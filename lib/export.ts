@@ -12,7 +12,7 @@ function inlineStyles(element: SVGElement): void {
         // Default: white fill with gray border
         let fill = "#ffffff"
         let stroke = "#cbd5e1"
-        let strokeWidth = "2"
+        const strokeWidth = "2"
         
         if (el.classList.contains("fill-card")) {
           fill = "#ffffff"
@@ -224,9 +224,9 @@ export function exportState(state: Record<string, unknown>, filename = "state.js
       data: {
         context: state,
         // Extract status, value, and tags if they exist
-        status: (state as any).status,
-        value: (state as any).value,
-        tags: (state as any).tags,
+        status: (state as Record<string, unknown>).status,
+        value: (state as Record<string, unknown>).value,
+        tags: (state as Record<string, unknown>).tags,
         // Include any nested objects
         ...Object.entries(state).reduce((acc, [key, value]) => {
           if (typeof value === 'object' && value !== null) {

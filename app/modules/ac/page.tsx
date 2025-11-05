@@ -36,7 +36,7 @@ export default function ACPage() {
       try {
         // Restore context if available
         if (sharedState.context && typeof sharedState.context === 'object') {
-          const ctx = sharedState.context as any
+          const ctx = sharedState.context as Record<string, unknown>
           if (typeof ctx.value === 'number') {
             send({ type: "LOAD", value: ctx.value })
           }

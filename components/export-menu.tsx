@@ -19,7 +19,7 @@ interface ExportMenuProps {
   svgRef?: React.RefObject<SVGSVGElement | null>
   state?: Record<string, unknown> | unknown
   moduleName?: string
-  fullState?: any // Full XState snapshot for comprehensive export
+  fullState?: Record<string, unknown> // Full XState snapshot for comprehensive export
 }
 
 export function ExportMenu({ svgRef, state, moduleName = "module", fullState }: ExportMenuProps) {

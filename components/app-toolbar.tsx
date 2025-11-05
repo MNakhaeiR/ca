@@ -4,7 +4,6 @@ import * as React from "react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet"
@@ -66,8 +65,6 @@ export function AppToolbar() {
     { href: "/modules/memory", label: "Main Memory", abbr: "MEM", bits: 16 },
     { href: "/modules/bus", label: "Common Bus", abbr: "BUS", bits: 16 },
   ]
-
-  const allModules = [...registerModules, ...systemModules]
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl supports-backdrop-filter:bg-background/60">
