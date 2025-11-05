@@ -5,6 +5,7 @@ import { useMachine } from "@xstate/react"
 import { AppToolbar } from "@/components/app-toolbar"
 import { ControlPanel } from "@/components/control-panel"
 import { StatusBar } from "@/components/status-bar"
+import { ExportMenu } from "@/components/export-menu"
 import { HexInput } from "@/components/hex-input"
 import { Diagram } from "@/components/svg/diagram"
 import { Block } from "@/components/svg/block"
@@ -31,24 +32,48 @@ const OPCODES: Record<number, string> = {
 export default function IRPage() {
   const [state, send] = useMachine(irMachine)
   const [inputValue, setInputValue] = React.useState(0)
+  const [autoRun, setAutoRun] = React.useState(false)
+  const [speed, setSpeed] = React.useState(500)
+  const diagramRef = React.useRef<SVGSVGElement>(null)
+
+  // Auto-run effect - automatically load values
+  React.useEffect(() => {
+    if (autoRun) {
+      const timer = setInterval(() => {
+        send({ type: "LOAD", value: inputValue })
+      }, speed)
+      return () => clearInterval(timer)
+    }
+  }, [autoRun, speed, send, inputValue])
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement) return
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
 
       switch (e.key.toLowerCase()) {
+        case " ":
+        case "enter":
+          e.preventDefault()
+          send({ type: "LOAD", value: inputValue })
+          break
         case "l":
+          e.preventDefault()
           send({ type: "LOAD", value: inputValue })
           break
         case "c":
+          e.preventDefault()
           send({ type: "CLEAR" })
+          break
+        case "a":
+          e.preventDefault()
+          setAutoRun(!autoRun)
           break
       }
     }
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [send, inputValue])
+  }, [send, inputValue, autoRun])
 
   const isActive = (signal: string) => state.context.activeSignal === signal
 
@@ -66,6 +91,7 @@ export default function IRPage() {
               </div>
               <p className="text-muted-foreground mt-2">Holds and decodes the current instruction</p>
             </div>
+            <ExportMenu svgRef={diagramRef} state={state.context} moduleName="ir" />
           </div>
 
           <StatusBar
@@ -85,7 +111,7 @@ export default function IRPage() {
                   <CardDescription>Instruction register with decode logic</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Diagram viewBox="0 0 700 450">
+                  <Diagram viewBox="0 0 700 450" ref={diagramRef}>
                     {/* IR Block */}
                     <Block x={250} y={150} width={120} height={60} label="IR" active={isActive("load")} />
 
@@ -160,7 +186,12 @@ export default function IRPage() {
               <ControlPanel
                 title="IR Controls"
                 description="Load and decode instructions"
+                onStep={() => send({ type: "LOAD", value: inputValue })}
                 onReset={() => send({ type: "CLEAR" })}
+                onAutoRun={setAutoRun}
+                onSpeedChange={setSpeed}
+                autoRun={autoRun}
+                speed={speed}
               >
                 <div className="space-y-4">
                   <HexInput

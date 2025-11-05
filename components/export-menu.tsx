@@ -16,12 +16,13 @@ import { useToast } from "@/hooks/use-toast"
 import { exportSVG, exportSVGToPNG, exportState, generateShareURL } from "@/lib/export"
 
 interface ExportMenuProps {
-  svgRef?: React.RefObject<SVGSVGElement>
-  state?: Record<string, unknown>
+  svgRef?: React.RefObject<SVGSVGElement | null>
+  state?: Record<string, unknown> | unknown
   moduleName?: string
+  fullState?: any // Full XState snapshot for comprehensive export
 }
 
-export function ExportMenu({ svgRef, state, moduleName = "module" }: ExportMenuProps) {
+export function ExportMenu({ svgRef, state, moduleName = "module", fullState }: ExportMenuProps) {
   const { toast } = useToast()
 
   const handleExportSVG = async () => {
@@ -75,7 +76,7 @@ export function ExportMenu({ svgRef, state, moduleName = "module" }: ExportMenuP
   }
 
   const handleExportState = () => {
-    if (!state) {
+    if (!state && !fullState) {
       toast({
         title: "Export failed",
         description: "No state available to export",
@@ -85,10 +86,18 @@ export function ExportMenu({ svgRef, state, moduleName = "module" }: ExportMenuP
     }
 
     try {
-      exportState(state, `${moduleName}-state.json`)
+      // Create comprehensive state export
+      const stateToExport = fullState || state
+      const enrichedState: Record<string, unknown> = {
+        module: moduleName,
+        timestamp: new Date().toISOString(),
+        ...(typeof stateToExport === 'object' && stateToExport !== null ? stateToExport : { value: stateToExport })
+      }
+      
+      exportState(enrichedState, `${moduleName}-state.json`)
       toast({
         title: "State exported",
-        description: "State saved successfully",
+        description: "Complete state saved successfully",
       })
     } catch {
       toast({
@@ -100,7 +109,7 @@ export function ExportMenu({ svgRef, state, moduleName = "module" }: ExportMenuP
   }
 
   const handleShare = async () => {
-    if (!state) {
+    if (!state && !fullState) {
       toast({
         title: "Share failed",
         description: "No state available to share",
@@ -110,7 +119,26 @@ export function ExportMenu({ svgRef, state, moduleName = "module" }: ExportMenuP
     }
 
     try {
-      const url = generateShareURL(state)
+      // Use fullState if available for complete sharing
+      const stateToShare = fullState || state
+      const enrichedState: Record<string, unknown> = {
+        module: moduleName,
+        timestamp: new Date().toISOString(),
+        ...(typeof stateToShare === 'object' && stateToShare !== null ? stateToShare : { value: stateToShare })
+      }
+      
+      const url = generateShareURL(enrichedState)
+      
+      // Check if URL is too long (most browsers support ~2000 chars, be conservative)
+      if (url.length > 2000) {
+        toast({
+          title: "URL too long",
+          description: "State is too complex to share via URL. Try exporting as JSON instead.",
+          variant: "destructive",
+        })
+        return
+      }
+      
       await navigator.clipboard.writeText(url)
       toast({
         title: "Link copied",
@@ -136,7 +164,7 @@ export function ExportMenu({ svgRef, state, moduleName = "module" }: ExportMenuP
       <DropdownMenuContent align="end" className="w-48">
         <DropdownMenuLabel>Export Options</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {svgRef && (
+        {!!svgRef && (
           <>
             <DropdownMenuItem onClick={handleExportSVG}>
               <FileImage className="mr-2 h-4 w-4" />
@@ -149,7 +177,7 @@ export function ExportMenu({ svgRef, state, moduleName = "module" }: ExportMenuP
             <DropdownMenuSeparator />
           </>
         )}
-        {state && (
+        {!!state && (
           <>
             <DropdownMenuItem onClick={handleExportState}>
               <FileJson className="mr-2 h-4 w-4" />

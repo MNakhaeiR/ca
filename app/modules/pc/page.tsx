@@ -5,6 +5,7 @@ import { useMachine } from "@xstate/react"
 import { AppToolbar } from "@/components/app-toolbar"
 import { ControlPanel } from "@/components/control-panel"
 import { StatusBar } from "@/components/status-bar"
+import { ExportMenu } from "@/components/export-menu"
 import { HexInput } from "@/components/hex-input"
 import { Diagram } from "@/components/svg/diagram"
 import { Block } from "@/components/svg/block"
@@ -20,27 +21,52 @@ import { Label } from "@/components/ui/label"
 export default function PCPage() {
   const [state, send] = useMachine(pcMachine)
   const [inputValue, setInputValue] = React.useState(0)
+  const [autoRun, setAutoRun] = React.useState(false)
+  const [speed, setSpeed] = React.useState(500)
+  const diagramRef = React.useRef<SVGSVGElement>(null)
+
+  // Auto-run effect - automatically increment through addresses
+  React.useEffect(() => {
+    if (autoRun) {
+      const timer = setInterval(() => {
+        send({ type: "INCREMENT" })
+      }, speed)
+      return () => clearInterval(timer)
+    }
+  }, [autoRun, speed, send])
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement) return
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
 
       switch (e.key.toLowerCase()) {
+        case " ":
+        case "enter":
+          e.preventDefault()
+          send({ type: "INCREMENT" })
+          break
         case "l":
+          e.preventDefault()
           send({ type: "LOAD", value: inputValue })
           break
         case "c":
+          e.preventDefault()
           send({ type: "CLEAR" })
           break
         case "i":
+          e.preventDefault()
           send({ type: "INCREMENT" })
+          break
+        case "a":
+          e.preventDefault()
+          setAutoRun(!autoRun)
           break
       }
     }
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [send, inputValue])
+  }, [send, inputValue, autoRun])
 
   const isActive = (signal: string) => state.context.activeSignal === signal
 
@@ -60,6 +86,7 @@ export default function PCPage() {
                 Tracks the address of the next instruction with MUX for branch control
               </p>
             </div>
+            <ExportMenu svgRef={diagramRef} state={state.context} moduleName="pc" />
           </div>
 
           <StatusBar
@@ -78,7 +105,7 @@ export default function PCPage() {
                   <CardDescription>Program counter with multiplexer for next address selection</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Diagram viewBox="0 0 700 450">
+                  <Diagram viewBox="0 0 700 450" ref={diagramRef}>
                     {/* PC Block */}
                     <Block
                       x={300}
@@ -154,7 +181,12 @@ export default function PCPage() {
               <ControlPanel
                 title="PC Controls"
                 description="Control program counter and next-PC source"
+                onStep={() => send({ type: "INCREMENT" })}
                 onReset={() => send({ type: "CLEAR" })}
+                onAutoRun={setAutoRun}
+                onSpeedChange={setSpeed}
+                autoRun={autoRun}
+                speed={speed}
               >
                 <div className="space-y-4">
                   <HexInput

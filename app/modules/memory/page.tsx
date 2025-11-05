@@ -5,6 +5,7 @@ import { useMachine } from "@xstate/react"
 import { AppToolbar } from "@/components/app-toolbar"
 import { ControlPanel } from "@/components/control-panel"
 import { StatusBar } from "@/components/status-bar"
+import { ExportMenu } from "@/components/export-menu"
 import { HexInput } from "@/components/hex-input"
 import { Diagram } from "@/components/svg/diagram"
 import { Block } from "@/components/svg/block"
@@ -25,6 +26,19 @@ export default function MemoryPage() {
   const [value, setValue] = React.useState(0)
   const [editAddress, setEditAddress] = React.useState<number | null>(null)
   const [editValue, setEditValue] = React.useState(0)
+  const [autoRun, setAutoRun] = React.useState(false)
+  const [speed, setSpeed] = React.useState(500)
+  const diagramRef = React.useRef<SVGSVGElement>(null)
+
+  // Auto-run effect - automatically read memory addresses
+  React.useEffect(() => {
+    if (autoRun) {
+      const timer = setInterval(() => {
+        send({ type: "READ", address: address })
+      }, speed)
+      return () => clearInterval(timer)
+    }
+  }, [autoRun, speed, send, address])
 
   const isActive = (signal: string) => state.context.activeSignal === signal
 
@@ -62,6 +76,7 @@ export default function MemoryPage() {
               </div>
               <p className="text-muted-foreground mt-2">4096 words of 16-bit memory with read/write operations</p>
             </div>
+            <ExportMenu svgRef={diagramRef} state={state.context} moduleName="memory" />
           </div>
 
           <StatusBar
@@ -80,7 +95,7 @@ export default function MemoryPage() {
                   <CardDescription>Memory array with address and data buses</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Diagram viewBox="0 0 700 400">
+                  <Diagram viewBox="0 0 700 400" ref={diagramRef}>
                     {/* Memory Block */}
                     <Block
                       x={250}
@@ -172,7 +187,12 @@ export default function MemoryPage() {
               <ControlPanel
                 title="Memory Controls"
                 description="Read, write, and manage memory"
+                onStep={() => send({ type: "READ", address })}
                 onReset={() => send({ type: "CLEAR_ALL" })}
+                onAutoRun={setAutoRun}
+                onSpeedChange={setSpeed}
+                autoRun={autoRun}
+                speed={speed}
               >
                 <div className="space-y-4">
                   <HexInput label="Address" value={address} bits={12} onChange={setAddress} />

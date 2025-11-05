@@ -5,6 +5,7 @@ import { useMachine } from "@xstate/react"
 import { AppToolbar } from "@/components/app-toolbar"
 import { ControlPanel } from "@/components/control-panel"
 import { StatusBar } from "@/components/status-bar"
+import { ExportMenu } from "@/components/export-menu"
 import { HexInput } from "@/components/hex-input"
 import { Diagram } from "@/components/svg/diagram"
 import { Block } from "@/components/svg/block"
@@ -25,6 +26,19 @@ export default function BusPage() {
   const [state, send] = useMachine(busMachine)
   const [source, setSource] = React.useState<BusSource>("ar")
   const [value, setValue] = React.useState(0)
+  const [autoRun, setAutoRun] = React.useState(false)
+  const [speed, setSpeed] = React.useState(500)
+  const diagramRef = React.useRef<SVGSVGElement>(null)
+
+  // Auto-run effect - automatically drive values on bus
+  React.useEffect(() => {
+    if (autoRun) {
+      const timer = setInterval(() => {
+        send({ type: "DRIVE", source, value })
+      }, speed)
+      return () => clearInterval(timer)
+    }
+  }, [autoRun, speed, send, source, value])
 
   const isActive = (signal: string) => state.context.activeSignal === signal
 
@@ -42,6 +56,7 @@ export default function BusPage() {
               </div>
               <p className="text-muted-foreground mt-2">Tri-state bus connecting all registers and memory</p>
             </div>
+            <ExportMenu svgRef={diagramRef} state={state.context} moduleName="bus" />
           </div>
 
           {state.context.conflict && (
@@ -69,7 +84,7 @@ export default function BusPage() {
                   <CardDescription>16-bit tri-state bus with multiple sources</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Diagram viewBox="0 0 700 500">
+                  <Diagram viewBox="0 0 700 500" ref={diagramRef}>
                     {/* Main horizontal bus */}
                     <BusLine
                       x1={100}
@@ -131,7 +146,12 @@ export default function BusPage() {
               <ControlPanel
                 title="Bus Controls"
                 description="Drive or release the common bus"
+                onStep={() => send({ type: "DRIVE", source, value })}
                 onReset={() => send({ type: "RELEASE" })}
+                onAutoRun={setAutoRun}
+                onSpeedChange={setSpeed}
+                autoRun={autoRun}
+                speed={speed}
               >
                 <div className="space-y-4">
                   <div className="space-y-2">

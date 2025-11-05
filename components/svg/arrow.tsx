@@ -39,16 +39,16 @@ export function Arrow({
       opacity: 1,
       strokeDashoffset: prefersReducedMotion ? 0 : [0, -20],
       transition: {
-        strokeWidth: { duration: 0.16, ease: "easeOut" },
-        opacity: { duration: 0.16, ease: "easeOut" },
+        strokeWidth: { duration: 0.16 },
+        opacity: { duration: 0.16 },
         strokeDashoffset: {
           duration: 1,
-          ease: "linear",
-          repeat: Number.POSITIVE_INFINITY,
+          repeat: Infinity,
+          ease: "linear" as const,
         },
       },
     },
-  }
+  } as const
 
   const labelX = (x1 + x2) / 2
   const labelY = (y1 + y2) / 2 + labelOffset
@@ -63,7 +63,7 @@ export function Arrow({
         y1={y1}
         x2={x2}
         y2={y2}
-        className={cn(active ? "stroke-[var(--active)]" : "stroke-[var(--line)]", className)}
+        className={cn(active ? "stroke-(--active)" : "stroke-(--line)", className)}
         variants={pathVariants}
         animate={active ? "active" : "inactive"}
         strokeDasharray={dashed ? (active ? "5,5" : "3,3") : undefined}
@@ -84,7 +84,7 @@ export function Arrow({
             y={labelY}
             textAnchor="middle"
             dominantBaseline="middle"
-            className={cn("text-xs font-mono select-none", active ? "fill-[var(--active)]" : "fill-muted-foreground")}
+            className={cn("text-xs font-mono select-none", active ? "fill-(--active)" : "fill-muted-foreground")}
             style={{ fontSize: "11px" }}
           >
             {label}

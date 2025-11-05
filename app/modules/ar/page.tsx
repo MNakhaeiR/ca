@@ -5,6 +5,7 @@ import { useMachine } from "@xstate/react"
 import { AppToolbar } from "@/components/app-toolbar"
 import { ControlPanel } from "@/components/control-panel"
 import { StatusBar } from "@/components/status-bar"
+import { ExportMenu } from "@/components/export-menu"
 import { HexInput } from "@/components/hex-input"
 import { Diagram } from "@/components/svg/diagram"
 import { Block } from "@/components/svg/block"
@@ -19,28 +20,53 @@ import { Badge } from "@/components/ui/badge"
 export default function ARPage() {
   const [state, send] = useMachine(arMachine)
   const [inputValue, setInputValue] = React.useState(0)
+  const [autoRun, setAutoRun] = React.useState(false)
+  const [speed, setSpeed] = React.useState(500)
+  const diagramRef = React.useRef<SVGSVGElement>(null)
+
+  // Auto-run effect - automatically increment through addresses
+  React.useEffect(() => {
+    if (autoRun) {
+      const timer = setInterval(() => {
+        send({ type: "INCREMENT" })
+      }, speed)
+      return () => clearInterval(timer)
+    }
+  }, [autoRun, speed, send])
 
   // Keyboard shortcuts
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement) return
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
 
       switch (e.key.toLowerCase()) {
+        case " ":
+        case "enter":
+          e.preventDefault()
+          send({ type: "INCREMENT" })
+          break
         case "l":
+          e.preventDefault()
           send({ type: "LOAD", value: inputValue })
           break
         case "c":
+          e.preventDefault()
           send({ type: "CLEAR" })
           break
         case "i":
+          e.preventDefault()
           send({ type: "INCREMENT" })
+          break
+        case "a":
+          e.preventDefault()
+          setAutoRun(!autoRun)
           break
       }
     }
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [send, inputValue])
+  }, [send, inputValue, autoRun])
 
   const isActive = (signal: string) => state.context.activeSignal === signal
 
@@ -59,6 +85,7 @@ export default function ARPage() {
               </div>
               <p className="text-muted-foreground mt-2">Holds memory addresses for read/write operations</p>
             </div>
+            <ExportMenu svgRef={diagramRef} state={state.context} moduleName="ar" />
           </div>
 
           {/* Status Bar */}
@@ -77,7 +104,7 @@ export default function ARPage() {
                   <CardDescription>Visual representation of the Address Register</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Diagram viewBox="0 0 600 400">
+                  <Diagram viewBox="0 0 600 400" ref={diagramRef}>
                     {/* Main AR Block */}
                     <Block
                       x={250}
@@ -129,7 +156,12 @@ export default function ARPage() {
               <ControlPanel
                 title="AR Controls"
                 description="Load, clear, or increment the address register"
+                onStep={() => send({ type: "INCREMENT" })}
                 onReset={() => send({ type: "CLEAR" })}
+                onAutoRun={setAutoRun}
+                onSpeedChange={setSpeed}
+                autoRun={autoRun}
+                speed={speed}
               >
                 <div className="space-y-4">
                   <HexInput

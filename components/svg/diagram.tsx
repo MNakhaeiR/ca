@@ -1,6 +1,6 @@
 "use client"
 
-import type * as React from "react"
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
 interface DiagramProps extends React.SVGProps<SVGSVGElement> {
@@ -8,9 +8,18 @@ interface DiagramProps extends React.SVGProps<SVGSVGElement> {
   viewBox?: string
 }
 
-export function Diagram({ children, viewBox = "0 0 800 600", className, ...props }: DiagramProps) {
-  return (
-    <svg viewBox={viewBox} className={cn("w-full h-auto", className)} xmlns="http://www.w3.org/2000/svg" {...props}>
+export const Diagram = React.forwardRef<SVGSVGElement, DiagramProps>(
+  ({ children, viewBox = "0 0 800 600", className, ...props }, ref) => {
+    return (
+      <svg
+        ref={ref}
+        viewBox={viewBox}
+        preserveAspectRatio="xMidYMid meet"
+        className={cn("w-full h-auto min-h-[300px]", className)}
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ maxHeight: "80vh" }}
+        {...props}
+      >
       <defs>
         {/* Arrow marker for signal paths */}
         <marker
@@ -54,4 +63,6 @@ export function Diagram({ children, viewBox = "0 0 800 600", className, ...props
       {children}
     </svg>
   )
-}
+})
+
+Diagram.displayName = "Diagram"

@@ -5,6 +5,7 @@ import { useMachine } from "@xstate/react"
 import { AppToolbar } from "@/components/app-toolbar"
 import { ControlPanel } from "@/components/control-panel"
 import { StatusBar } from "@/components/status-bar"
+import { ExportMenu } from "@/components/export-menu"
 import { Diagram } from "@/components/svg/diagram"
 import { Block } from "@/components/svg/block"
 import { Arrow } from "@/components/svg/arrow"
@@ -22,6 +23,7 @@ import { Play, Pause } from "lucide-react"
 export default function BasicComputerPage() {
   const [state, send] = useMachine(basicComputerMachine)
   const [selectedProgram, setSelectedProgram] = React.useState<string>("")
+  const diagramRef = React.useRef<SVGSVGElement>(null)
 
   // Auto-run effect
   React.useEffect(() => {
@@ -92,6 +94,7 @@ export default function BasicComputerPage() {
                 Complete Morris Mano Basic Computer with all components integrated
               </p>
             </div>
+            <ExportMenu svgRef={diagramRef} state={state.context} moduleName="basic-computer" />
           </div>
 
           <StatusBar
@@ -106,26 +109,26 @@ export default function BasicComputerPage() {
             lastOperation={state.context.currentMicroOp}
           />
 
-          <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Main Diagram */}
-            <div className="xl:col-span-3 space-y-6">
+            <div className="lg:col-span-3 space-y-6">
               <Card>
                 <CardHeader>
                   <CardTitle>System Architecture</CardTitle>
                   <CardDescription>Complete Basic Computer with all registers and memory</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Diagram viewBox="0 0 1000 750">
-                    {/* Section Labels */}
-                    <Label x={500} y={50} text="REGISTERS" className="fill-muted-foreground font-semibold" />
-                    <Label x={200} y={480} text="CONTROL & ALU" className="fill-muted-foreground font-semibold" />
+                  <Diagram viewBox="0 0 1000 800" ref={diagramRef}>
+                    {/* Section Labels with backgrounds */}
+                    <Label x={500} y={30} text="REGISTERS" className="fill-muted-foreground font-semibold text-base" background backgroundPadding={8} />
+                    <Label x={200} y={500} text="CONTROL & ALU" className="fill-muted-foreground font-semibold" background backgroundPadding={8} />
 
                     {/* Common Bus - positioned lower to avoid overlaps */}
                     <BusLine
                       x1={100}
-                      y1={400}
+                      y1={420}
                       x2={900}
-                      y2={400}
+                      y2={420}
                       active={isExecuting}
                       label="COMMON BUS [15:0]"
                       orientation="horizontal"
@@ -134,78 +137,99 @@ export default function BasicComputerPage() {
 
                     {/* Registers - Top Row with better spacing */}
                     <Block
-                      x={80}
-                      y={100}
+                      x={70}
+                      y={80}
                       width={90}
                       height={60}
                       label="PC"
                       active={state.context.sc === 0 || state.context.sc === 1}
                     />
-                    <Arrow x1={125} y1={160} x2={125} y2={400} active={isExecuting} labelOffset={-15} />
+                    <Label x={115} y={160} text="12-bit" className="text-xs fill-muted-foreground" mono background />
+                    <Arrow x1={115} y1={185} x2={115} y2={420} active={isExecuting} />
 
                     <Block
-                      x={200}
-                      y={100}
+                      x={190}
+                      y={80}
                       width={90}
                       height={60}
                       label="AR"
                       active={state.context.sc === 0 || state.context.sc === 2}
                     />
-                    <Arrow x1={245} y1={160} x2={245} y2={400} active={isExecuting} labelOffset={-15} />
+                    <Label x={235} y={160} text="12-bit" className="text-xs fill-muted-foreground" mono background />
+                    <Arrow x1={235} y1={185} x2={235} y2={420} active={isExecuting} />
 
-                    <Block x={320} y={100} width={90} height={60} label="IR" active={state.context.sc === 1} />
-                    <Arrow x1={365} y1={160} x2={365} y2={400} active={isExecuting} labelOffset={-15} />
+                    <Block x={310} y={80} width={90} height={60} label="IR" active={state.context.sc === 1} />
+                    <Label x={355} y={160} text="16-bit" className="text-xs fill-muted-foreground" mono background />
+                    <Arrow x1={355} y1={185} x2={355} y2={420} active={isExecuting} />
 
-                    <Block x={440} y={100} width={90} height={60} label="DR" active={state.context.sc === 3} />
-                    <Arrow x1={485} y1={160} x2={485} y2={400} active={isExecuting} labelOffset={-15} />
+                    <Block x={430} y={80} width={90} height={60} label="DR" active={state.context.sc === 3} />
+                    <Label x={475} y={160} text="16-bit" className="text-xs fill-muted-foreground" mono background />
+                    <Arrow x1={475} y1={185} x2={475} y2={420} active={isExecuting} />
 
-                    <Block x={560} y={100} width={90} height={60} label="AC" active={state.context.sc === 3} />
-                    <Arrow x1={605} y1={160} x2={605} y2={400} active={isExecuting} labelOffset={-15} />
+                    <Block x={550} y={80} width={90} height={60} label="AC" active={state.context.sc === 3} />
+                    <Label x={595} y={160} text="16-bit" className="text-xs fill-muted-foreground" mono background />
+                    <Arrow x1={595} y1={185} x2={595} y2={420} active={isExecuting} />
 
-                    <Block x={680} y={100} width={90} height={60} label="TR" />
-                    <Arrow x1={725} y1={160} x2={725} y2={400} active={false} labelOffset={-15} />
+                    <Block x={670} y={80} width={90} height={60} label="TR" />
+                    <Label x={715} y={160} text="16-bit" className="text-xs fill-muted-foreground" mono background />
+                    <Arrow x1={715} y1={185} x2={715} y2={420} active={false} />
 
                     {/* Memory - positioned with more space */}
                     <Block
-                      x={810}
-                      y={100}
+                      x={800}
+                      y={80}
                       width={110}
-                      height={90}
+                      height={100}
                       label="MEMORY"
                       active={state.context.sc === 1 || state.context.sc === 3}
                     />
-                    <Label x={865} y={150} text="4K x 16" className="text-xs fill-muted-foreground" mono />
-                    <Arrow x1={865} y1={190} x2={865} y2={400} active={isExecuting} labelOffset={-15} />
+                    <Label x={855} y={135} text="4K x 16" className="text-xs fill-muted-foreground" mono background />
+                    <Arrow x1={855} y1={195} x2={855} y2={420} active={isExecuting} />
 
                     {/* Control Unit - better positioned */}
-                    <Block x={80} y={520} width={140} height={90} label="CONTROL" active={isExecuting} />
-                    <Label x={150} y={570} text={`SC: T${state.context.sc}`} className="text-sm fill-foreground" mono />
+                    <Block x={70} y={540} width={150} height={100} label="CONTROL" active={isExecuting} />
+                    <Label x={145} y={595} text={`SC: T${state.context.sc}`} className="text-base fill-foreground font-semibold" mono background />
 
                     {/* ALU - separated from control */}
-                    <Block x={260} y={520} width={120} height={90} label="ALU" active={state.context.sc === 3} />
+                    <Block x={260} y={540} width={130} height={100} label="ALU" active={state.context.sc === 3} />
+                    <Label x={325} y={595} text="Arithmetic" className="text-xs fill-muted-foreground" background />
 
                     {/* I/O Registers - better spacing */}
-                    <Block x={420} y={520} width={90} height={40} label="INPR" />
-                    <Block x={420} y={570} width={90} height={40} label="OUTR" />
+                    <Block x={430} y={540} width={90} height={45} label="INPR" />
+                    <Label x={475} y={620} text="8-bit" className="text-xs fill-muted-foreground" mono background />
+                    
+                    <Block x={430} y={595} width={90} height={45} label="OUTR" />
+                    <Label x={475} y={665} text="8-bit" className="text-xs fill-muted-foreground" mono background />
 
                     {/* Flags - clearly separated */}
-                    <Block x={550} y={520} width={60} height={40} label="E" active={state.context.e === 1} />
-                    <Block x={550} y={570} width={60} height={40} label="I" active={state.context.i === 1} />
+                    <Block x={560} y={540} width={60} height={45} label="E" active={state.context.e === 1} />
+                    <Label x={590} y={610} text="Carry" className="text-xs fill-muted-foreground" background />
+                    
+                    <Block x={560} y={595} width={60} height={45} label="I" active={state.context.i === 1} />
+                    <Label x={590} y={665} text="Int" className="text-xs fill-muted-foreground" background />
 
-                    {/* Status indicators */}
+                    {/* Status indicators with backgrounds to prevent overlap */}
                     <Label
-                      x={700}
-                      y={540}
-                      text={`Opcode: ${state.context.opcode}`}
-                      className="text-sm fill-muted-foreground"
+                      x={730}
+                      y={560}
+                      text={`Opcode: ${state.context.opcode.toString(16).toUpperCase()}`}
+                      className="text-sm fill-foreground"
                       mono
                       background
                     />
                     <Label
-                      x={700}
-                      y={570}
+                      x={730}
+                      y={600}
+                      text={`Addr: 0x${state.context.address.toString(16).padStart(3, "0").toUpperCase()}`}
+                      className="text-sm fill-foreground"
+                      mono
+                      background
+                    />
+                    <Label
+                      x={730}
+                      y={640}
                       text={`Indirect: ${state.context.indirect ? "Yes" : "No"}`}
-                      className="text-sm fill-muted-foreground"
+                      className="text-sm fill-foreground"
                       mono
                       background
                     />
@@ -220,19 +244,22 @@ export default function BasicComputerPage() {
                   <CardDescription>Step-by-step execution history</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ScrollArea className="h-[200px]">
-                    <div className="space-y-2">
+                  <ScrollArea className="h-[200px] w-full">
+                    <div className="space-y-2 pr-4">
                       {state.context.microOpHistory.length === 0 ? (
                         <p className="text-sm text-muted-foreground text-center py-8">
                           No operations yet. Load a program and step through execution.
                         </p>
                       ) : (
                         state.context.microOpHistory.map((op, i) => (
-                          <div key={i} className="flex items-center gap-3 p-2 rounded bg-muted/50 font-mono text-sm">
-                            <Badge variant="outline" className="shrink-0">
-                              {i + 1}
+                          <div
+                            key={i}
+                            className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-3 rounded bg-muted/50 hover:bg-muted/70 transition-colors"
+                          >
+                            <Badge variant="outline" className="shrink-0 w-fit">
+                              Step {i + 1}
                             </Badge>
-                            <span>{op}</span>
+                            <span className="font-mono text-xs sm:text-sm break-all">{op}</span>
                           </div>
                         ))
                       )}

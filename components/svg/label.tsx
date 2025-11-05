@@ -20,12 +20,12 @@ export function Label({
   className,
   mono = false,
   background = false,
-  backgroundPadding = 4,
+  backgroundPadding = 6,
 }: LabelProps) {
-  // Calculate text width for background (approximate)
-  const charWidth = mono ? 7.5 : 7
+  // Calculate text width for background (approximate, adjusted for better accuracy)
+  const charWidth = mono ? 8 : 7.5
   const textWidth = text.length * charWidth
-  const textHeight = 16
+  const textHeight = 18
 
   let bgX = x
   if (anchor === "middle") {
@@ -35,16 +35,17 @@ export function Label({
   }
 
   return (
-    <g>
+    <g className="pointer-events-none">
       {background && (
         <rect
           x={bgX - backgroundPadding}
           y={y - textHeight / 2 - backgroundPadding}
           width={textWidth + backgroundPadding * 2}
           height={textHeight + backgroundPadding * 2}
-          className="fill-background stroke-border"
+          className="fill-background/95 stroke-border"
           strokeWidth={0.5}
-          rx={2}
+          rx={3}
+          style={{ filter: "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1))" }}
         />
       )}
       <text
@@ -52,8 +53,14 @@ export function Label({
         y={y}
         textAnchor={anchor}
         dominantBaseline="middle"
-        className={cn("text-sm select-none", mono ? "font-mono" : "font-medium", "fill-foreground", className)}
-        style={{ fontSize: "13px" }}
+        className={cn(
+          "text-sm select-none",
+          mono ? "font-mono" : "font-medium",
+          "fill-foreground",
+          background && "font-semibold",
+          className
+        )}
+        style={{ fontSize: mono ? "12px" : "13px" }}
       >
         {text}
       </text>

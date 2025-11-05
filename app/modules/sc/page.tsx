@@ -5,6 +5,7 @@ import { useMachine } from "@xstate/react"
 import { AppToolbar } from "@/components/app-toolbar"
 import { ControlPanel } from "@/components/control-panel"
 import { StatusBar } from "@/components/status-bar"
+import { ExportMenu } from "@/components/export-menu"
 import { Diagram } from "@/components/svg/diagram"
 import { Block } from "@/components/svg/block"
 import { Arrow } from "@/components/svg/arrow"
@@ -19,24 +20,48 @@ import { Label } from "@/components/ui/label"
 export default function SCPage() {
   const [state, send] = useMachine(scMachine)
   const [inputValue, setInputValue] = React.useState(0)
+  const [autoRun, setAutoRun] = React.useState(false)
+  const [speed, setSpeed] = React.useState(500)
+  const diagramRef = React.useRef<SVGSVGElement>(null)
+
+  // Auto-run effect - automatically increment through timing states
+  React.useEffect(() => {
+    if (autoRun) {
+      const timer = setInterval(() => {
+        send({ type: "INCREMENT" })
+      }, speed)
+      return () => clearInterval(timer)
+    }
+  }, [autoRun, speed, send])
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement) return
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
 
       switch (e.key.toLowerCase()) {
+        case " ":
+        case "enter":
+          e.preventDefault()
+          send({ type: "INCREMENT" })
+          break
         case "c":
+          e.preventDefault()
           send({ type: "CLEAR" })
           break
         case "i":
+          e.preventDefault()
           send({ type: "INCREMENT" })
+          break
+        case "a":
+          e.preventDefault()
+          setAutoRun(!autoRun)
           break
       }
     }
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [send])
+  }, [send, autoRun])
 
   const isActive = (signal: string) => state.context.activeSignal === signal
 
@@ -54,6 +79,7 @@ export default function SCPage() {
               </div>
               <p className="text-muted-foreground mt-2">Tracks timing states (T0-T15) during instruction execution</p>
             </div>
+            <ExportMenu svgRef={diagramRef} state={state.context} moduleName="sc" />
           </div>
 
           <StatusBar
@@ -72,7 +98,7 @@ export default function SCPage() {
                   <CardDescription>4-bit counter for timing control</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Diagram viewBox="0 0 600 400">
+                  <Diagram viewBox="0 0 600 400" ref={diagramRef}>
                     <Block
                       x={250}
                       y={150}
@@ -133,7 +159,12 @@ export default function SCPage() {
               <ControlPanel
                 title="SC Controls"
                 description="Control the sequence counter"
+                onStep={() => send({ type: "INCREMENT" })}
                 onReset={() => send({ type: "CLEAR" })}
+                onAutoRun={setAutoRun}
+                onSpeedChange={setSpeed}
+                autoRun={autoRun}
+                speed={speed}
               >
                 <div className="space-y-4">
                   <div className="space-y-2">

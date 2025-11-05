@@ -5,6 +5,7 @@ import { useMachine } from "@xstate/react"
 import { AppToolbar } from "@/components/app-toolbar"
 import { ControlPanel } from "@/components/control-panel"
 import { StatusBar } from "@/components/status-bar"
+import { ExportMenu } from "@/components/export-menu"
 import { HexInput } from "@/components/hex-input"
 import { Diagram } from "@/components/svg/diagram"
 import { Block } from "@/components/svg/block"
@@ -23,6 +24,19 @@ export default function IOPage() {
   const [state, send] = useMachine(ioMachine)
   const [inprValue, setInprValue] = React.useState(0)
   const [outrValue, setOutrValue] = React.useState(0)
+  const [autoRun, setAutoRun] = React.useState(false)
+  const [speed, setSpeed] = React.useState(500)
+  const diagramRef = React.useRef<SVGSVGElement>(null)
+
+  // Auto-run effect - automatically load INPR
+  React.useEffect(() => {
+    if (autoRun) {
+      const timer = setInterval(() => {
+        send({ type: "LOAD_INPR", value: inprValue })
+      }, speed)
+      return () => clearInterval(timer)
+    }
+  }, [autoRun, speed, send, inprValue])
 
   const isActive = (signal: string) => state.context.activeSignal === signal
 
@@ -46,6 +60,7 @@ export default function IOPage() {
                 Input/Output registers and flag bits (E: Carry, I: Interrupt Enable)
               </p>
             </div>
+            <ExportMenu svgRef={diagramRef} state={state.context} moduleName="io" />
           </div>
 
           <StatusBar
@@ -66,7 +81,7 @@ export default function IOPage() {
                   <CardDescription>I/O registers and flag bits</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Diagram viewBox="0 0 700 500">
+                  <Diagram viewBox="0 0 700 500" ref={diagramRef}>
                     {/* INPR Block */}
                     <Block x={100} y={150} width={100} height={50} label="INPR" active={isActive("inpr")} />
                     <BitField
@@ -155,7 +170,16 @@ export default function IOPage() {
             </div>
 
             <div className="space-y-6">
-              <ControlPanel title="I/O Controls" description="Control I/O registers and flags">
+              <ControlPanel
+                title="I/O Controls"
+                description="Control I/O registers and flags"
+                onStep={() => send({ type: "LOAD_INPR", value: inprValue })}
+                onReset={() => send({ type: "CLEAR_OUTR" })}
+                onAutoRun={setAutoRun}
+                onSpeedChange={setSpeed}
+                autoRun={autoRun}
+                speed={speed}
+              >
                 <Tabs defaultValue="io" className="w-full">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="io">I/O</TabsTrigger>
