@@ -38,7 +38,7 @@
     "framer-motion": "latest",
     "happy-dom": "latest",
     "lucide-react": "latest",
-    "next": "latest",
+    "next": "15.5.8",
     "next-themes": "latest",
     "path": "latest",
     "react": "latest",
