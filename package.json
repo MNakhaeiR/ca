@@ -38,7 +38,7 @@
     "framer-motion": "latest",
     "happy-dom": "latest",
     "lucide-react": "latest",
-    "next": "15.5.8",
+    "next": "^16.1.1",
     "next-themes": "latest",
     "path": "latest",
     "react": "latest",
@@ -50,6 +50,7 @@
     "xstate": "latest"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "latest",
     "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",

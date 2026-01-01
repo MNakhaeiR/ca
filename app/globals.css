@@ -74,7 +74,7 @@
 }
 
 @theme inline {
-  --font-sans: "Inter", "Inter Fallback", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-estedad), var(--font-inter), "Inter", "Inter Fallback", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", "Courier New", monospace;
 
   /* Fluid typography using clamp */

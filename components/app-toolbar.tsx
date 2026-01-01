@@ -98,6 +98,13 @@ export function AppToolbar() {
               </Link>
             </Button>
 
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/blog">
+                <BookOpen className="h-4 w-4 mr-2" />
+                Blog
+              </Link>
+            </Button>
+
             {/* Modules Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -219,6 +226,18 @@ export function AppToolbar() {
                           <Link href="/integrated/basic-computer">
                             <Cpu className="mr-3 h-4 w-4" />
                             <span className="flex-1 text-left">Basic Computer</span>
+                          </Link>
+                        </Button>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Button
+                          variant={pathname.startsWith("/blog") ? "secondary" : "ghost"}
+                          className="w-full justify-start h-11"
+                          asChild
+                        >
+                          <Link href="/blog">
+                            <BookOpen className="mr-3 h-4 w-4" />
+                            <span className="flex-1 text-left">Blog</span>
                           </Link>
                         </Button>
                       </SheetClose>

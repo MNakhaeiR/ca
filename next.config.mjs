@@ -5,6 +5,16 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.weserv.nl',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wsrv.nl',
+      },
+    ],
   },
 }
 
