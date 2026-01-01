@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700">
+  <rect width="900" height="700" fill="#f8f9fa"/>
+  
+  <defs>
+    <linearGradient id="rp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#1e40af"/>
+    </linearGradient>
+    <linearGradient id="re" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#059669"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="rc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ea580c"/>
+      <stop offset="1" stop-color="#c2410c"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Title -->
+  <text x="450" y="30" font-family="Arial" font-size="26" font-weight="bold" text-anchor="middle" fill="#0f172a">Intel Raptor Lake (13th Gen Core i9)</text>
+  <text x="450" y="52" font-family="Arial" font-size="13" text-anchor="middle" fill="#64748b">Core i9-13900K: 24 Cores (8P + 16E) • 32 Threads • 36MB L3</text>
+  
+  <!-- P-Cores -->
+  <rect x="30" y="70" width="840" height="140" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="450" y="95" font-family="Arial" font-size="15" font-weight="bold" text-anchor="middle" fill="#1e40af">Performance Cores (Raptor Cove)</text>
+  
+  <rect x="50" y="105" width="95" height="70" rx="4" fill="url(#rp)" stroke="#1e40af" stroke-width="2"/>
+  <text x="97" y="130" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="white">P-Core 0</text>
+  <text x="97" y="148" font-family="Arial" font-size="8" text-anchor="middle" fill="#dbeafe">HT: 2 threads</text>
+  <text x="97" y="162" font-family="Arial" font-size="8" text-anchor="middle" fill="#dbeafe">L2: 2MB</text>
+  
+  <rect x="155" y="105" width="95" height="70" rx="4" fill="url(#rp)" stroke="#1e40af" stroke-width="2"/>
+  <text x="202" y="130" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="white">P-Core 1</text>
+  
+  <rect x="260" y="105" width="95" height="70" rx="4" fill="url(#rp)" stroke="#1e40af" stroke-width="2"/>
+  <text x="307" y="130" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="white">P-Core 2</text>
+  
+  <rect x="365" y="105" width="95" height="70" rx="4" fill="url(#rp)" stroke="#1e40af" stroke-width="2"/>
+  <text x="412" y="130" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="white">P-Core 3</text>
+  
+  <rect x="470" y="105" width="95" height="70" rx="4" fill="url(#rp)" stroke="#1e40af" stroke-width="2"/>
+  <text x="517" y="130" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="white">P-Core 4</text>
+  
+  <rect x="575" y="105" width="95" height="70" rx="4" fill="url(#rp)" stroke="#1e40af" stroke-width="2"/>
+  <text x="622" y="130" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="white">P-Core 5</text>
+  
+  <rect x="680" y="105" width="95" height="70" rx="4" fill="url(#rp)" stroke="#1e40af" stroke-width="2"/>
+  <text x="727" y="130" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="white">P-Core 6</text>
+  
+  <rect x="785" y="105" width="75" height="70" rx="4" fill="url(#rp)" stroke="#1e40af" stroke-width="2"/>
+  <text x="822" y="130" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="white">P-7</text>
+  
+  <!-- E-Cores -->
+  <rect x="30" y="230" width="840" height="190" rx="6" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+  <text x="450" y="255" font-family="Arial" font-size="15" font-weight="bold" text-anchor="middle" fill="#047857">Efficiency Cores (Enhanced Gracemont) - 16 E-cores in 4 Clusters</text>
+  
+  <!-- Cluster 0 -->
+  <rect x="50" y="265" width="190" height="135" rx="4" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="145" y="283" font-family="Arial" font-size="10" font-weight="bold" text-anchor="middle" fill="#047857">Cluster 0</text>
+  <rect x="60" y="290" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="100" y="310" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 0</text>
+  <rect x="150" y="290" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="190" y="310" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 1</text>
+  <rect x="60" y="345" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="100" y="365" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 2</text>
+  <rect x="150" y="345" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="190" y="365" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 3</text>
+  
+  <!-- Cluster 1 -->
+  <rect x="255" y="265" width="190" height="135" rx="4" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="350" y="283" font-family="Arial" font-size="10" font-weight="bold" text-anchor="middle" fill="#047857">Cluster 1</text>
+  <rect x="265" y="290" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="305" y="310" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 4</text>
+  <rect x="355" y="290" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="395" y="310" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 5</text>
+  <rect x="265" y="345" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="305" y="365" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 6</text>
+  <rect x="355" y="345" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="395" y="365" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 7</text>
+  
+  <!-- Cluster 2 -->
+  <rect x="460" y="265" width="190" height="135" rx="4" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="555" y="283" font-family="Arial" font-size="10" font-weight="bold" text-anchor="middle" fill="#047857">Cluster 2</text>
+  <rect x="470" y="290" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="510" y="310" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 8</text>
+  <rect x="560" y="290" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="600" y="310" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 9</text>
+  <rect x="470" y="345" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="510" y="365" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 10</text>
+  <rect x="560" y="345" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="600" y="365" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 11</text>
+  
+  <!-- Cluster 3 -->
+  <rect x="665" y="265" width="190" height="135" rx="4" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="760" y="283" font-family="Arial" font-size="10" font-weight="bold" text-anchor="middle" fill="#047857">Cluster 3</text>
+  <rect x="675" y="290" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="715" y="310" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 12</text>
+  <rect x="765" y="290" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="805" y="310" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 13</text>
+  <rect x="675" y="345" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="715" y="365" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 14</text>
+  <rect x="765" y="345" width="80" height="45" rx="3" fill="url(#re)" stroke="#047857" stroke-width="1.5"/>
+  <text x="805" y="365" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" fill="white">E-Core 15</text>
+  
+  <!-- L3 Cache -->
+  <rect x="30" y="440" width="840" height="90" rx="6" fill="url(#rc)" stroke="#c2410c" stroke-width="3"/>
+  <text x="450" y="472" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">Shared L3 Cache - 36 MB</text>
+  <text x="450" y="495" font-family="Arial" font-size="12" text-anchor="middle" fill="#fed7aa">Non-inclusive • Shared by all 24 cores</text>
+  <text x="450" y="515" font-family="Arial" font-size="11" text-anchor="middle" fill="#fed7aa">12-way set associative • Total Cache: 52MB (16MB P-L2 + 16MB E-L2 + 36MB L3)</text>
+  
+  <!-- Memory Controller -->
+  <rect x="30" y="550" width="840" height="80" rx="6" fill="#475569" stroke="#334155" stroke-width="2"/>
+  <text x="450" y="580" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">System Agent and Memory Controller</text>
+  <text x="150" y="607" font-family="Arial" font-size="11" text-anchor="middle" fill="#e2e8f0">DDR5-5600</text>
+  <text x="280" y="607" font-family="Arial" font-size="11" text-anchor="middle" fill="#e2e8f0">DDR4-3200</text>
+  <text x="410" y="607" font-family="Arial" font-size="11" text-anchor="middle" fill="#e2e8f0">PCIe 5.0 (20 lanes)</text>
+  <text x="560" y="607" font-family="Arial" font-size="11" text-anchor="middle" fill="#e2e8f0">PCIe 4.0</text>
+  <text x="690" y="607" font-family="Arial" font-size="11" text-anchor="middle" fill="#e2e8f0">DMI 4.0</text>
+  <text x="780" y="607" font-family="Arial" font-size="11" text-anchor="middle" fill="#e2e8f0">UHD 770</text>
+  <text x="450" y="623" font-family="Arial" font-size="9" text-anchor="middle" fill="#cbd5e1">Intel 7 Process (Enhanced 10nm SuperFin)</text>
+  
+  <!-- Specs -->
+  <text x="30" y="665" font-family="Arial" font-size="11" font-weight="bold" fill="#0f172a">Max Turbo: 5.8 GHz (P-core)</text>
+  <text x="30" y="685" font-family="Arial" font-size="11" font-weight="bold" fill="#0f172a">TDP: 125W (PL1) / 253W (PL2)</text>
+  <text x="600" y="665" font-family="Arial" font-size="11" font-weight="bold" fill="#0f172a">32 Threads (16 P-core HT + 16 E-core)</text>
+  <text x="600" y="685" font-family="Arial" font-size="11" font-weight="bold" fill="#0f172a">Total L2: 32MB (16MB P + 16MB E)</text>
+</svg>

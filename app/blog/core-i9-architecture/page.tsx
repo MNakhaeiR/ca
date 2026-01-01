@@ -3,6 +3,9 @@ import { CoreI9BlockDiagram, PipelineDiagram, BranchPredictorDiagram, CacheHiera
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CoreComparisonChart, CacheLatencyChart } from "@/components/performance-chart";
+import { GlossaryText } from "@/components/glossary-text";
+import { GlossaryTerm } from "@/components/glossary-term";
+import { ImageZoomModal } from "@/components/image-zoom-modal";
 
 export default function CoreI9ArchitecturePage() {
     return (
@@ -32,179 +35,157 @@ export default function CoreI9ArchitecturePage() {
                     <h3 className="text-2xl font-semibold mb-4 mt-6">۱.۱. پیشینه و تاریخچه</h3>
                     <div className="prose prose-lg dark:prose-invert max-w-none">
                         <p className="text-lg leading-relaxed text-justify mb-4">
-                            سری پردازنده‌های Intel Core i9 به عنوان پرچمدار محصولات Intel برای کاربران حرفه‌ای و پرعملکرد طراحی شده‌اند.
-                            این پردازنده‌ها از معماری‌های پیشرفته‌ای همچون Skylake، Coffee Lake، Comet Lake، Rocket Lake، Alder Lake و Raptor Lake بهره می‌برند.
-                            نسل اول Core i9 در سال ۲۰۱۷ معرفی شد و هدف آن ارائه بالاترین سطح عملکرد در پلتفرم‌های Desktop و Mobile بود.
+                            <GlossaryText>
+                                سری پردازنده‌های Intel Core i9 به عنوان پرچمدار محصولات Intel برای کاربران حرفه‌ای و پرعملکرد طراحی شده‌اند.
+                                این پردازنده‌ها از معماری‌های پیشرفته‌ای همچون Skylake، Coffee Lake، Comet Lake، Rocket Lake، Alder Lake و Raptor Lake بهره می‌برند.
+                                نسل اول Core i9 در سال ۲۰۱۷ معرفی شد و هدف آن ارائه بالاترین سطح عملکرد در پلتفرم‌های Desktop و Mobile بود.
+                            </GlossaryText>
                         </p>
                         <p className="text-lg leading-relaxed text-justify mb-4">
-                            معماری Core i9 ترکیبی از تکنولوژی‌های پیشرفته شامل Out-of-Order Execution، Hyper-Threading، پیش‌بینی شاخه پیشرفته،
-                            و سلسله مراتب حافظه نهان چند سطحی را در خود جای داده است. این پردازنده‌ها با بهره‌گیری از فرآیندهای ساخت پیشرفته (از 14nm تا 7nm Intel)
-                            و معماری‌های بهینه‌شده، توانسته‌اند رکوردهای جدیدی در زمینه عملکرد تک‌هسته‌ای و چندهسته‌ای برقرار کنند.
+                            <GlossaryText>
+                                معماری Core i9 ترکیبی از تکنولوژی‌های پیشرفته شامل Out-of-Order Execution، Hyper-Threading، پیش‌بینی شاخه پیشرفته،
+                                و سلسله مراتب حافظه نهان چند سطحی را در خود جای داده است. این پردازنده‌ها با بهره‌گیری از فرآیندهای ساخت پیشرفته (از 14nm تا 7nm Intel)
+                                و معماری‌های بهینه‌شده، توانسته‌اند رکوردهای جدیدی در زمینه عملکرد تک‌هسته‌ای و چندهسته‌ای برقرار کنند.
+                            </GlossaryText>
                         </p>
                     </div>
 
-                    {/* Von Neumann Architecture */}
+                    {/* Core i9 Architecture Diagrams */}
                     <div className="grid md:grid-cols-2 gap-6 my-8">
                         <Card>
                             <CardHeader className="bg-muted/30">
-                                <CardTitle className="text-base">معماری فون نویمان</CardTitle>
+                                <CardTitle className="text-base">Intel Alder Lake (12th Gen) Architecture</CardTitle>
                             </CardHeader>
                             <CardContent className="p-4">
-                                <div className="bg-white rounded-lg p-4">
-                                    <img
-                                        src="/images/blog/von-neumann.svg"
-                                        alt="Von Neumann Architecture"
-                                        className="w-full h-auto object-contain"
-                                        loading="lazy"
-                                    />
-                                </div>
+                                <ImageZoomModal
+                                    src="/images/blog/alder-lake-architecture.svg"
+                                    alt="Intel Alder Lake Core i9 Architecture"
+                                />
                                 <p className="text-xs text-muted-foreground mt-3 text-center">
-                                    معماری فون نویمان - اساس پردازنده‌های مدرن
+                                    معماری Alder Lake نسل 12 - اولین پردازنده Hybrid Intel با 8 P-cores و 8 E-cores
+                                    <br />
+                                    <span className="text-[10px] opacity-70">Core i9-12900K: 16 هسته (8P+8E) / 24 رشته / 30MB L3</span>
                                 </p>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader className="bg-muted/30">
-                                <CardTitle className="text-base">ساختار کامپیوتر پایه</CardTitle>
+                                <CardTitle className="text-base">Intel CPU Block Diagram</CardTitle>
                             </CardHeader>
                             <CardContent className="p-4">
-                                <div className="bg-white rounded-lg p-4">
-                                    <img
-                                        src="/images/blog/basic-computer.gif"
-                                        alt="Basic Computer Architecture"
-                                        className="w-full h-auto object-contain"
-                                        loading="lazy"
-                                    />
-                                </div>
+                                <ImageZoomModal
+                                    src="/images/blog/cpu-block.svg"
+                                    alt="Intel Processor Block Diagram"
+                                />
                                 <p className="text-xs text-muted-foreground mt-3 text-center">
-                                    نمودار بلوکی کامپیوتر - اجزای اصلی و ارتباطات
+                                    دیاگرام بلوکی پردازنده Intel - اجزای اصلی و ارتباطات
                                 </p>
                             </CardContent>
                         </Card>
                     </div>
 
-                    <Card className="mt-8 mb-8">\n                        <CardHeader className="bg-primary/5">\n                            <CardTitle>مشخصات فنی نسل‌های مختلف Core i9</CardTitle>\n                        </CardHeader>\n                        <CardContent className="pt-6">
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-sm">
-                                <thead className="bg-muted">
-                                    <tr>
-                                        <th className="p-3 text-right">نسل</th>
-                                        <th className="p-3 text-center">معماری</th>
-                                        <th className="p-3 text-center">فرآیند ساخت</th>
-                                        <th className="p-3 text-center">تعداد هسته</th>
-                                        <th className="p-3 text-center">L3 Cache</th>
-                                        <th className="p-3 text-center">TDP</th>
-                                        <th className="p-3 text-center">Max Turbo</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr className="border-t">
-                                        <td className="p-3 font-semibold">۱st Gen (2017)</td>
-                                        <td className="p-3 text-center">Skylake-X</td>
-                                        <td className="p-3 text-center">14nm</td>
-                                        <td className="p-3 text-center">10-18</td>
-                                        <td className="p-3 text-center">13.75-24.75 MB</td>
-                                        <td className="p-3 text-center">165W</td>
-                                        <td className="p-3 text-center">4.5 GHz</td>
-                                    </tr>
-                                    <tr className="border-t bg-muted/30">
-                                        <td className="p-3 font-semibold">8th Gen (2018)</td>
-                                        <td className="p-3 text-center">Coffee Lake</td>
-                                        <td className="p-3 text-center">14nm++</td>
-                                        <td className="p-3 text-center">8</td>
-                                        <td className="p-3 text-center">16 MB</td>
-                                        <td className="p-3 text-center">95W</td>
-                                        <td className="p-3 text-center">5.0 GHz</td>
-                                    </tr>
-                                    <tr className="border-t">
-                                        <td className="p-3 font-semibold">9th Gen (2018)</td>
-                                        <td className="p-3 text-center">Coffee Lake Refresh</td>
-                                        <td className="p-3 text-center">14nm++</td>
-                                        <td className="p-3 text-center">8</td>
-                                        <td className="p-3 text-center">16 MB</td>
-                                        <td className="p-3 text-center">95-127W</td>
-                                        <td className="p-3 text-center">5.0 GHz</td>
-                                    </tr>
-                                    <tr className="border-t bg-muted/30">
-                                        <td className="p-3 font-semibold">10th Gen (2020)</td>
-                                        <td className="p-3 text-center">Comet Lake</td>
-                                        <td className="p-3 text-center">14nm+++</td>
-                                        <td className="p-3 text-center">10</td>
-                                        <td className="p-3 text-center">20 MB</td>
-                                        <td className="p-3 text-center">125W</td>
-                                        <td className="p-3 text-center">5.3 GHz</td>
-                                    </tr>
-                                    <tr className="border-t">
-                                        <td className="p-3 font-semibold">12th Gen (2021)</td>
-                                        <td className="p-3 text-center">Alder Lake</td>
-                                        <td className="p-3 text-center">Intel 7 (10nm)</td>
-                                        <td className="p-3 text-center">16 (8P+8E)</td>
-                                        <td className="p-3 text-center">30 MB</td>
-                                        <td className="p-3 text-center">125W</td>
-                                        <td className="p-3 text-center">5.2 GHz</td>
-                                    </tr>
-                                    <tr className="border-t bg-muted/30">
-                                        <td className="p-3 font-semibold">13th Gen (2022)</td>
-                                        <td className="p-3 text-center">Raptor Lake</td>
-                                        <td className="p-3 text-center">Intel 7</td>
-                                        <td className="p-3 text-center">24 (8P+16E)</td>
-                                        <td className="p-3 text-center">36 MB</td>
-                                        <td className="p-3 text-center">125W</td>
-                                        <td className="p-3 text-center">5.8 GHz</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-4 p-3 bg-muted/30 rounded">
-                            <strong>نکته:</strong> نسل‌های ۱۲ و ۱۳ از معماری Hybrid استفاده می‌کنند که شامل هسته‌های Performance (P-cores) و Efficient (E-cores) است.
-                            TDP واقعی در بار کاری سنگین می‌تواند تا ۲۵۳W برسد.
-                        </p>
-                    </CardContent>
+                    <Card className="mt-8 mb-8">
+                        <CardHeader className="bg-primary/5">
+                            <CardTitle>مشخصات فنی نسل‌های مختلف Core i9</CardTitle>
+                        </CardHeader>
+                        <CardContent className="pt-6">
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                    <thead className="bg-muted">
+                                        <tr>
+                                            <th className="p-3 text-right">نسل</th>
+                                            <th className="p-3 text-center">معماری</th>
+                                            <th className="p-3 text-center">فرآیند ساخت</th>
+                                            <th className="p-3 text-center">تعداد هسته</th>
+                                            <th className="p-3 text-center">L3 Cache</th>
+                                            <th className="p-3 text-center">TDP</th>
+                                            <th className="p-3 text-center">Max Turbo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr className="border-t">
+                                            <td className="p-3 font-semibold">۱st Gen (2017)</td>
+                                            <td className="p-3 text-center">Skylake-X</td>
+                                            <td className="p-3 text-center">14nm</td>
+                                            <td className="p-3 text-center">10-18</td>
+                                            <td className="p-3 text-center">13.75-24.75 MB</td>
+                                            <td className="p-3 text-center">165W</td>
+                                            <td className="p-3 text-center">4.5 GHz</td>
+                                        </tr>
+                                        <tr className="border-t bg-muted/30">
+                                            <td className="p-3 font-semibold">8th Gen (2018)</td>
+                                            <td className="p-3 text-center">Coffee Lake</td>
+                                            <td className="p-3 text-center">14nm++</td>
+                                            <td className="p-3 text-center">8</td>
+                                            <td className="p-3 text-center">16 MB</td>
+                                            <td className="p-3 text-center">95W</td>
+                                            <td className="p-3 text-center">5.0 GHz</td>
+                                        </tr>
+                                        <tr className="border-t">
+                                            <td className="p-3 font-semibold">9th Gen (2018)</td>
+                                            <td className="p-3 text-center">Coffee Lake Refresh</td>
+                                            <td className="p-3 text-center">14nm++</td>
+                                            <td className="p-3 text-center">8</td>
+                                            <td className="p-3 text-center">16 MB</td>
+                                            <td className="p-3 text-center">95-127W</td>
+                                            <td className="p-3 text-center">5.0 GHz</td>
+                                        </tr>
+                                        <tr className="border-t bg-muted/30">
+                                            <td className="p-3 font-semibold">10th Gen (2020)</td>
+                                            <td className="p-3 text-center">Comet Lake</td>
+                                            <td className="p-3 text-center">14nm+++</td>
+                                            <td className="p-3 text-center">10</td>
+                                            <td className="p-3 text-center">20 MB</td>
+                                            <td className="p-3 text-center">125W</td>
+                                            <td className="p-3 text-center">5.3 GHz</td>
+                                        </tr>
+                                        <tr className="border-t">
+                                            <td className="p-3 font-semibold">12th Gen (2021)</td>
+                                            <td className="p-3 text-center">Alder Lake</td>
+                                            <td className="p-3 text-center">Intel 7 (10nm)</td>
+                                            <td className="p-3 text-center">16 (8P+8E)</td>
+                                            <td className="p-3 text-center">30 MB</td>
+                                            <td className="p-3 text-center">125W</td>
+                                            <td className="p-3 text-center">5.2 GHz</td>
+                                        </tr>
+                                        <tr className="border-t bg-muted/30">
+                                            <td className="p-3 font-semibold">13th Gen (2022)</td>
+                                            <td className="p-3 text-center">Raptor Lake</td>
+                                            <td className="p-3 text-center">Intel 7</td>
+                                            <td className="p-3 text-center">24 (8P+16E)</td>
+                                            <td className="p-3 text-center">36 MB</td>
+                                            <td className="p-3 text-center">125W</td>
+                                            <td className="p-3 text-center">5.8 GHz</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p className="text-xs text-muted-foreground mt-4 p-3 bg-muted/30 rounded">
+                                <strong>نکته:</strong> <GlossaryText>نسل‌های ۱۲ و ۱۳ از معماری Hybrid استفاده می‌کنند که شامل هسته‌های Performance (P-cores) و Efficient (E-cores) است.
+                                TDP واقعی در بار کاری سنگین می‌تواند تا ۲۵۳W برسد.</GlossaryText>
+                            </p>
+                        </CardContent>
                     </Card>
 
                     {/* Visual References - Real Images */}
                     <div className="grid md:grid-cols-2 gap-6 my-8">
                         <Card>
                             <CardHeader className="bg-muted/30">
-                                <CardTitle className="text-base">ساختار Die پردازنده Raptor Lake</CardTitle>
+                                <CardTitle className="text-base">معماری Raptor Lake (نسل 13)</CardTitle>
                             </CardHeader>
                             <CardContent className="p-4">
-                                <div className="relative w-full bg-linear-to-br from-blue-900 to-purple-900 rounded-lg overflow-hidden p-6">
-                                    <div className="space-y-3">
-                                        {/* P-Cores */}
-                                        <div>
-                                            <div className="text-xs text-blue-200 mb-1 font-semibold">Performance Cores (P-cores)</div>
-                                            <div className="grid grid-cols-4 gap-1">
-                                                {[...Array(8)].map((_, i) => (
-                                                    <div key={i} className="aspect-square bg-blue-400/40 border border-blue-300 rounded flex items-center justify-center text-[10px] font-bold text-white">
-                                                        P{i}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                        {/* E-Cores */}
-                                        <div>
-                                            <div className="text-xs text-green-200 mb-1 font-semibold">Efficiency Cores (E-cores)</div>
-                                            <div className="grid grid-cols-8 gap-1">
-                                                {[...Array(16)].map((_, i) => (
-                                                    <div key={i} className="aspect-square bg-green-400/40 border border-green-300 rounded flex items-center justify-center text-[8px] font-bold text-white">
-                                                        E{i}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                        {/* L3 Cache */}
-                                        <div className="bg-yellow-500/20 border border-yellow-400 rounded p-3 text-center">
-                                            <div className="text-sm font-bold text-white">L3 Cache - 36 MB</div>
-                                            <div className="text-xs text-yellow-200">Shared across all cores</div>
-                                        </div>
-                                    </div>
+                                <div className="bg-white rounded-lg p-4">
+                                    <ImageZoomModal
+                                        src="/images/blog/raptor-lake-architecture.svg"
+                                        alt="Intel Raptor Lake Architecture Diagram"
+                                        className="w-full h-auto object-contain"
+                                    />
                                 </div>
                                 <p className="text-xs text-muted-foreground mt-3 text-center">
-                                    نمودار ساختار Die پردازنده Raptor Lake - 8 P-cores + 16 E-cores + 36MB L3
+                                    معماری Raptor Lake (نسل 13) - Core i9-13900K
                                     <br />
-                                    <span className="text-[10px] opacity-70">(نمودار تصویری بر اساس مشخصات واقعی)</span>
+                                    <span className="text-[10px] opacity-70">24 هسته (8P+16E) / 32 رشته / 36MB L3 / 52MB Total Cache</span>
                                 </p>
                             </CardContent>
                         </Card>
@@ -257,14 +238,10 @@ export default function CoreI9ArchitecturePage() {
                             <CardTitle>بلوک دیاگرام پردازنده</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6">
-                            <div className="relative w-full bg-white rounded-lg overflow-hidden p-6">
-                                <img
-                                    src="/images/blog/cpu-block.svg"
-                                    alt="CPU Block Diagram"
-                                    className="w-full h-auto object-contain max-h-96"
-                                    loading="lazy"
-                                />
-                            </div>
+                            <ImageZoomModal
+                                src="/images/blog/cpu-block.svg"
+                                alt="بلوک دیاگرام عمومی پردازنده - نمایش اجزای اصلی"
+                            />
                             <p className="text-xs text-muted-foreground mt-3 text-center">
                                 بلوک دیاگرام عمومی پردازنده - نمایش اجزای اصلی
                             </p>
@@ -355,14 +332,10 @@ export default function CoreI9ArchitecturePage() {
                             <CardTitle>توپولوژی سیستم چندهسته‌ای</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6">
-                            <div className="bg-white rounded-lg p-4">
-                                <img
-                                    src="/images/blog/cpu-topology.png"
-                                    alt="CPU Topology Diagram"
-                                    className="w-full h-auto object-contain max-h-96"
-                                    loading="lazy"
-                                />
-                            </div>
+                            <ImageZoomModal
+                                src="/images/blog/cpu-topology.png"
+                                alt="نمای کلی توپولوژی سیستم - نمایش هسته‌ها، Cache و سلسله مراتب حافظه"
+                            />
                             <p className="text-xs text-muted-foreground mt-3 text-center">
                                 نمای کلی توپولوژی سیستم - نمایش هسته‌ها، Cache و سلسله مراتب حافظه
                             </p>
@@ -376,14 +349,10 @@ export default function CoreI9ArchitecturePage() {
                             <CardTitle className="text-base">معماری فون نویمان</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6">
-                            <div className="bg-white rounded-lg p-4">
-                                <img
-                                    src="/images/blog/von-neumann.svg"
-                                    alt="Von Neumann Architecture"
-                                    className="w-full h-auto object-contain max-h-80"
-                                    loading="lazy"
-                                />
-                            </div>
+                            <ImageZoomModal
+                                src="/images/blog/von-neumann.svg"
+                                alt="معماری فون نویمان - اساس پردازنده‌های مدرن"
+                            />
                             <p className="text-xs text-muted-foreground mt-3 text-center">
                                 معماری فون نویمان - اساس پردازنده‌های مدرن
                             </p>
@@ -396,14 +365,10 @@ export default function CoreI9ArchitecturePage() {
                             <CardTitle className="text-base">ساختار کامپیوتر پایه</CardTitle>
                         </CardHeader>
                         <CardContent className="p-6">
-                            <div className="bg-white rounded-lg p-4">
-                                <img
-                                    src="/images/blog/basic-computer.gif"
-                                    alt="Basic Computer Architecture"
-                                    className="w-full h-auto object-contain max-h-80"
-                                    loading="lazy"
-                                />
-                            </div>
+                            <ImageZoomModal
+                                src="/images/blog/basic-computer.gif"
+                                alt="نمودار بلوکی کامپیوتر - اجزای اصلی و ارتباطات"
+                            />
                             <p className="text-xs text-muted-foreground mt-3 text-center">
                                 نمودار بلوکی کامپیوتر - اجزای اصلی و ارتباطات
                             </p>
@@ -445,13 +410,13 @@ export default function CoreI9ArchitecturePage() {
 
                     <h3 className="text-2xl font-bold mb-4 mt-8">۲.۱. دیاگرام بلوکی هسته</h3>
                     <p className="text-lg leading-relaxed text-justify mb-6">
-                        معماری Core i9 شامل واحدهای اصلی زیر است:
+                        <GlossaryText>معماری Core i9 شامل واحدهای اصلی زیر است:</GlossaryText>
                     </p>
                     <ul className="list-disc list-inside space-y-2 mb-6 text-lg mr-6">
-                        <li>Front-End: واحد واکشی و رمزگشایی دستورالعمل‌ها</li>
-                        <li>Execution Engine: واحدهای اجرایی شامل ALU، FPU، SIMD</li>
-                        <li>Memory Subsystem: سلسله مراتب حافظه نهان و کنترلر حافظه</li>
-                        <li>Uncore: Ring Bus، LLC و کنترلرهای I/O</li>
+                        <li><GlossaryText>Front-End: واحد واکشی و رمزگشایی دستورالعمل‌ها</GlossaryText></li>
+                        <li><GlossaryText>Execution Engine: واحدهای اجرایی شامل ALU، FPU، SIMD</GlossaryText></li>
+                        <li><GlossaryText>Memory Subsystem: سلسله مراتب حافظه نهان و کنترلر حافظه</GlossaryText></li>
+                        <li><GlossaryText>Uncore: Ring Bus، LLC و کنترلرهای I/O</GlossaryText></li>
                     </ul>
 
                     <CoreI9BlockDiagram />
@@ -460,7 +425,7 @@ export default function CoreI9ArchitecturePage() {
                         <CardContent className="pt-6">
                             <h4 className="font-bold mb-2">نکته:</h4>
                             <p className="text-sm leading-relaxed">
-                                معماری‌های نسل‌های جدیدتر (Alder Lake و Raptor Lake) از طراحی Hybrid استفاده می‌کنند که شامل هسته‌های Performance (P-cores) و Efficient (E-cores) هستند.
+                                <GlossaryText>معماری‌های نسل‌های جدیدتر (Alder Lake و Raptor Lake) از طراحی Hybrid استفاده می‌کنند که شامل هسته‌های Performance (P-cores) و Efficient (E-cores) هستند.</GlossaryText>
                             </p>
                         </CardContent>
                     </Card>
@@ -472,7 +437,7 @@ export default function CoreI9ArchitecturePage() {
 
                     <h3 className="text-2xl font-bold mb-4 mt-8">۳.۱. مراحل Pipeline</h3>
                     <p className="text-lg leading-relaxed text-justify mb-6">
-                        Core i9 از یک pipeline عمیق و پیچیده با قابلیت Out-of-Order Execution استفاده می‌کند:
+                        <GlossaryText>Core i9 از یک pipeline عمیق و پیچیده با قابلیت Out-of-Order Execution استفاده می‌کند:</GlossaryText>
                     </p>
 
                     <PipelineDiagram />
@@ -486,15 +451,15 @@ export default function CoreI9ArchitecturePage() {
                                 <ul className="space-y-3 text-sm">
                                     <li className="flex items-start gap-2">
                                         <span className="font-bold min-w-30">Fetch:</span>
-                                        <span>واکشی دستورالعمل‌ها از L1-I Cache با پهنای باند بالا (16-32 byte/cycle)</span>
+                                        <span><GlossaryText>واکشی دستورالعمل‌ها از L1-I Cache با پهنای باند بالا (16-32 byte/cycle)</GlossaryText></span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="font-bold min-w-30">Decode:</span>
-                                        <span>رمزگشایی دستورالعمل‌های x86 پیچیده به Micro-Ops (μOps)</span>
+                                        <span><GlossaryText>رمزگشایی دستورالعمل‌های x86 پیچیده به Micro-Ops (μOps)</GlossaryText></span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="font-bold min-w-30">μOp Cache:</span>
-                                        <span>ذخیره μOps رمزگشایی شده برای کاهش تأخیر Decode</span>
+                                        <span><GlossaryText>ذخیره μOps رمزگشایی شده برای کاهش تأخیر Decode</GlossaryText></span>
                                     </li>
                                 </ul>
                             </CardContent>
@@ -508,19 +473,19 @@ export default function CoreI9ArchitecturePage() {
                                 <ul className="space-y-3 text-sm">
                                     <li className="flex items-start gap-2">
                                         <span className="font-bold min-w-30">Allocate:</span>
-                                        <span>تخصیص منابع (ROB، RS) به μOps</span>
+                                        <span><GlossaryText>تخصیص منابع (ROB، RS) به μOps</GlossaryText></span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="font-bold min-w-30">Schedule:</span>
-                                        <span>زمان‌بندی خارج از ترتیب برای اجرا</span>
+                                        <span><GlossaryText>زمان‌بندی خارج از ترتیب برای اجرا</GlossaryText></span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="font-bold min-w-30">Execute:</span>
-                                        <span>اجرای μOps در واحدهای اجرایی متعدد</span>
+                                        <span><GlossaryText>اجرای μOps در واحدهای اجرایی متعدد</GlossaryText></span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="font-bold min-w-30">Retire:</span>
-                                        <span>Commit نتایج به ترتیب برنامه</span>
+                                        <span><GlossaryText>Commit نتایج به ترتیب برنامه</GlossaryText></span>
                                     </li>
                                 </ul>
                             </CardContent>
@@ -529,7 +494,7 @@ export default function CoreI9ArchitecturePage() {
 
                     <h3 className="text-2xl font-bold mb-4 mt-10">۳.۲. Pipeline Stalls و Hazards</h3>
                     <p className="text-lg leading-relaxed text-justify mb-6">
-                        عوامل مختلفی می‌توانند باعث توقف یا کاهش کارایی Pipeline شوند:
+                        <GlossaryText>عوامل مختلفی می‌توانند باعث توقف یا کاهش کارایی Pipeline شوند:</GlossaryText>
                     </p>
 
                     <Tabs defaultValue="data" className="w-full" dir="rtl">
@@ -541,13 +506,13 @@ export default function CoreI9ArchitecturePage() {
                         <TabsContent value="data" className="space-y-4">
                             <Card>
                                 <CardContent className="pt-6">
-                                    <h4 className="font-bold mb-3">وابستگی داده‌ها (Data Dependencies)</h4>
-                                    <p className="mb-4">تکنیک‌های مقابله:</p>
+                                    <h4 className="font-bold mb-3"><GlossaryText>وابستگی داده‌ها (Data Dependencies)</GlossaryText></h4>
+                                    <p className="mb-4"><GlossaryText>تکنیک‌های مقابله:</GlossaryText></p>
                                     <ul className="list-disc list-inside space-y-2 mr-4">
-                                        <li><strong>Register Renaming:</strong> حذف WAR و WAW dependencies با استفاده از Physical Register File (180+ registers)</li>
-                                        <li><strong>Forwarding:</strong> انتقال مستقیم نتایج بین واحدهای اجرایی</li>
-                                        <li><strong>Out-of-Order Execution:</strong> اجرای دستورالعمل‌های مستقل در حین انتظار</li>
-                                        <li><strong>Memory Disambiguation:</strong> پیش‌بینی وابستگی‌های حافظه</li>
+                                        <li><GlossaryText><strong>Register Renaming:</strong> حذف WAR و WAW dependencies با استفاده از Physical Register File (180+ registers)</GlossaryText></li>
+                                        <li><GlossaryText><strong>Forwarding:</strong> انتقال مستقیم نتایج بین واحدهای اجرایی</GlossaryText></li>
+                                        <li><GlossaryText><strong>Out-of-Order Execution:</strong> اجرای دستورالعمل‌های مستقل در حین انتظار</GlossaryText></li>
+                                        <li><GlossaryText><strong>Memory Disambiguation:</strong> پیش‌بینی وابستگی‌های حافظه</GlossaryText></li>
                                     </ul>
                                 </CardContent>
                             </Card>
@@ -555,27 +520,27 @@ export default function CoreI9ArchitecturePage() {
                         <TabsContent value="control" className="space-y-4">
                             <Card>
                                 <CardContent className="pt-6">
-                                    <h4 className="font-bold mb-3">دستورالعمل‌های شاخه (Branch Instructions)</h4>
-                                    <p className="mb-4">تأثیر Branch Misprediction:</p>
+                                    <h4 className="font-bold mb-3"><GlossaryText>دستورالعمل‌های شاخه (Branch Instructions)</GlossaryText></h4>
+                                    <p className="mb-4"><GlossaryText>تأثیر Branch Misprediction:</GlossaryText></p>
                                     <ul className="list-disc list-inside space-y-2 mr-4">
-                                        <li>Flush کامل Pipeline (15-20+ cycles penalty)</li>
-                                        <li>از دست رفتن کار انجام شده در مسیر اشتباه</li>
-                                        <li>تأثیر منفی بر روی IPC (Instructions Per Cycle)</li>
+                                        <li><GlossaryText>Flush کامل Pipeline (15-20+ cycles penalty)</GlossaryText></li>
+                                        <li><GlossaryText>از دست رفتن کار انجام شده در مسیر اشتباه</GlossaryText></li>
+                                        <li><GlossaryText>تأثیر منفی بر روی IPC (Instructions Per Cycle)</GlossaryText></li>
                                     </ul>
-                                    <p className="mt-4 mb-2">راه‌حل: سیستم پیش‌بینی شاخه پیشرفته (بخش بعدی)</p>
+                                    <p className="mt-4 mb-2"><GlossaryText>راه‌حل: سیستم پیش‌بینی شاخه پیشرفته (بخش بعدی)</GlossaryText></p>
                                 </CardContent>
                             </Card>
                         </TabsContent>
                         <TabsContent value="structural" className="space-y-4">
                             <Card>
                                 <CardContent className="pt-6">
-                                    <h4 className="font-bold mb-3">محدودیت منابع (Resource Conflicts)</h4>
-                                    <p className="mb-4">راه‌حل‌های معماری:</p>
+                                    <h4 className="font-bold mb-3"><GlossaryText>محدودیت منابع (Resource Conflicts)</GlossaryText></h4>
+                                    <p className="mb-4"><GlossaryText>راه‌حل‌های معماری:</GlossaryText></p>
                                     <ul className="list-disc list-inside space-y-2 mr-4">
-                                        <li><strong>Port Redundancy:</strong> چندین Port اجرایی (8-12 ports)</li>
-                                        <li><strong>Multiple ALUs:</strong> واحدهای محاسباتی متعدد (4-6 ALUs)</li>
-                                        <li><strong>Reservation Stations:</strong> صف‌های انتظار بزرگ (97+ entries)</li>
-                                        <li><strong>ROB Size:</strong> Reorder Buffer بزرگ (224-512 entries)</li>
+                                        <li><GlossaryText><strong>Port Redundancy:</strong> چندین Port اجرایی (8-12 ports)</GlossaryText></li>
+                                        <li><GlossaryText><strong>Multiple ALUs:</strong> واحدهای محاسباتی متعدد (4-6 ALUs)</GlossaryText></li>
+                                        <li><GlossaryText><strong>Reservation Stations:</strong> صف‌های انتظار بزرگ (97+ entries)</GlossaryText></li>
+                                        <li><GlossaryText><strong>ROB Size:</strong> Reorder Buffer بزرگ (224-512 entries)</GlossaryText></li>
                                     </ul>
                                 </CardContent>
                             </Card>
@@ -588,8 +553,10 @@ export default function CoreI9ArchitecturePage() {
                     <h2 className="text-3xl font-bold mb-6">۴. پیش‌بینی شاخه (Branch Prediction)</h2>
 
                     <p className="text-lg leading-relaxed text-justify mb-6">
-                        پیش‌بینی شاخه یکی از حیاتی‌ترین اجزای معماری‌های مدرن است. Core i9 از یک سیستم پیش‌بینی چند لایه و پیچیده استفاده می‌کند
-                        که دقت بالای 97-99% را در کاربردهای واقعی ارائه می‌دهد.
+                        <GlossaryText>
+                            پیش‌بینی شاخه یکی از حیاتی‌ترین اجزای معماری‌های مدرن است. Core i9 از یک سیستم پیش‌بینی چند لایه و پیچیده استفاده می‌کند
+                            که دقت بالای 97-99% را در کاربردهای واقعی ارائه می‌دهد.
+                        </GlossaryText>
                     </p>
 
                     <BranchPredictorDiagram />
@@ -599,41 +566,41 @@ export default function CoreI9ArchitecturePage() {
                     <div className="grid md:grid-cols-2 gap-6 mb-8">
                         <Card>
                             <CardHeader>
-                                <CardTitle>Branch Target Buffer (BTB)</CardTitle>
+                                <CardTitle><GlossaryTerm term="btb">Branch Target Buffer (BTB)</GlossaryTerm></CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
                                     <li><strong>Size:</strong> 4K-12K entries</li>
                                     <li><strong>Function:</strong> ذخیره آدرس مقصد شاخه‌های شناخته شده</li>
-                                    <li><strong>Latency:</strong> دسترسی در یک چرخه</li>
-                                    <li><strong>Organization:</strong> ساختار Set-Associative</li>
+                                    <li><strong>Latency:</strong> <GlossaryTerm term="latency">دسترسی در یک چرخه</GlossaryTerm></li>
+                                    <li><strong>Organization:</strong> ساختار <GlossaryTerm term="set-associative">Set-Associative</GlossaryTerm></li>
                                 </ul>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Pattern History Table (PHT)</CardTitle>
+                                <CardTitle><GlossaryTerm term="pht">Pattern History Table (PHT)</GlossaryTerm></CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
                                     <li><strong>Algorithm:</strong> Two-Level Adaptive Predictor</li>
-                                    <li><strong>Global History:</strong> تاریخچه چندین شاخه اخیر</li>
-                                    <li><strong>Local History:</strong> تاریخچه هر شاخه خاص</li>
-                                    <li><strong>Counters:</strong> 2-bit Saturating Counters</li>
+                                    <li><strong><GlossaryTerm term="global-history">Global History</GlossaryTerm>:</strong> تاریخچه چندین شاخه اخیر</li>
+                                    <li><strong><GlossaryTerm term="local-history">Local History</GlossaryTerm>:</strong> تاریخچه هر شاخه خاص</li>
+                                    <li><strong>Counters:</strong> <GlossaryTerm term="saturating-counter">2-bit Saturating Counters</GlossaryTerm></li>
                                 </ul>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Return Stack Buffer (RSB)</CardTitle>
+                                <CardTitle><GlossaryTerm term="rsb">Return Stack Buffer (RSB)</GlossaryTerm></CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
                                     <li><strong>Purpose:</strong> پیش‌بینی آدرس بازگشت از توابع</li>
                                     <li><strong>Depth:</strong> 16-32 entries</li>
-                                    <li><strong>Structure:</strong> Stack (LIFO)</li>
+                                    <li><strong>Structure:</strong> Stack (<GlossaryTerm term="lifo">LIFO</GlossaryTerm>)</li>
                                     <li><strong>Accuracy:</strong> تقریباً 100% برای call/return معمولی</li>
                                 </ul>
                             </CardContent>
@@ -641,7 +608,7 @@ export default function CoreI9ArchitecturePage() {
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Indirect Branch Predictor</CardTitle>
+                                <CardTitle><GlossaryTerm term="indirect-predictor">Indirect Branch Predictor</GlossaryTerm></CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
@@ -653,18 +620,20 @@ export default function CoreI9ArchitecturePage() {
                         </Card>
                     </div>
 
-                    <h3 className="text-2xl font-bold mb-4 mt-8">۴.۲. الگوریتم پیش‌بینی TAGE</h3>
+                    <h3 className="text-2xl font-bold mb-4 mt-8">۴.۲. الگوریتم پیش‌بینی <GlossaryTerm term="tage">TAGE</GlossaryTerm></h3>
                     <Card className="bg-muted/30">
                         <CardContent className="pt-6">
                             <p className="text-lg leading-relaxed text-justify mb-4">
-                                <strong>TAGE (TAgged GEometric history length predictor)</strong> یکی از پیشرفته‌ترین الگوریتم‌های
-                                پیش‌بینی شاخه است که در معماری‌های جدید Intel استفاده می‌شود:
+                                <GlossaryText>
+                                    TAGE (TAgged GEometric history length predictor) یکی از پیشرفته‌ترین الگوریتم‌های
+                                    پیش‌بینی شاخه است که در معماری‌های جدید Intel استفاده می‌شود:
+                                </GlossaryText>
                             </p>
                             <ul className="list-disc list-inside space-y-2 mr-6">
-                                <li>استفاده از چندین جدول با طول‌های مختلف تاریخچه</li>
-                                <li>Tag-based indexing برای کاهش Aliasing</li>
-                                <li>Geometric history lengths: h(i) = α^i × L</li>
-                                <li>Usefulness counters برای مدیریت جایگزینی</li>
+                                <li><GlossaryText>استفاده از چندین جدول با طول‌های مختلف تاریخچه</GlossaryText></li>
+                                <li>Tag-based indexing برای کاهش <GlossaryTerm term="aliasing">Aliasing</GlossaryTerm></li>
+                                <li><GlossaryText>Geometric history lengths: h(i) = α^i × L</GlossaryText></li>
+                                <li><GlossaryText>Usefulness counters برای مدیریت جایگزینی</GlossaryText></li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -675,7 +644,7 @@ export default function CoreI9ArchitecturePage() {
                     <h2 className="text-3xl font-bold mb-6">۵. سلسله مراتب حافظه نهان</h2>
 
                     <p className="text-lg leading-relaxed text-justify mb-6">
-                        Core i9 از یک سیستم حافظه نهان سه یا چهار سطحی استفاده می‌کند که برای کاهش تأخیر دسترسی به حافظه بهینه شده است.
+                        <GlossaryText>Core i9 از یک سیستم حافظه نهان سه یا چهار سطحی استفاده می‌کند که برای کاهش تأخیر دسترسی به حافظه بهینه شده است.</GlossaryText>
                     </p>
 
                     <CacheHierarchyDiagram />
@@ -741,14 +710,14 @@ export default function CoreI9ArchitecturePage() {
                     <Card>
                         <CardContent className="pt-6">
                             <p className="text-lg leading-relaxed text-justify mb-4">
-                                <strong>پروتکل MESIF</strong> (بهبودیافته از MESI) برای حفظ سازگاری حافظه نهان در سیستم‌های چند هسته‌ای:
+                                <GlossaryText>پروتکل MESIF (بهبودیافته از MESI) برای حفظ سازگاری حافظه نهان در سیستم‌های چند هسته‌ای:</GlossaryText>
                             </p>
                             <ul className="list-disc list-inside space-y-2 mr-6">
-                                <li><strong>M (Modified):</strong> داده تغییر کرده و فقط در این Cache موجود است</li>
-                                <li><strong>E (Exclusive):</strong> داده تمیز و فقط در این Cache موجود است</li>
-                                <li><strong>S (Shared):</strong> داده در چندین Cache موجود است</li>
-                                <li><strong>I (Invalid):</strong> داده معتبر نیست</li>
-                                <li><strong>F (Forward):</strong> داده Shared است اما این Cache مسئول پاسخ‌دهی است (کاهش ترافیک)</li>
+                                <li><GlossaryText><strong>M (Modified):</strong> داده تغییر کرده و فقط در این Cache موجود است</GlossaryText></li>
+                                <li><GlossaryText><strong>E (Exclusive):</strong> داده تمیز و فقط در این Cache موجود است</GlossaryText></li>
+                                <li><GlossaryText><strong>S (Shared):</strong> داده در چندین Cache موجود است</GlossaryText></li>
+                                <li><GlossaryText><strong>I (Invalid):</strong> داده معتبر نیست</GlossaryText></li>
+                                <li><GlossaryText><strong>F (Forward):</strong> داده Shared است اما این Cache مسئول پاسخ‌دهی است (کاهش ترافیک)</GlossaryText></li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -764,7 +733,7 @@ export default function CoreI9ArchitecturePage() {
                     <h2 className="text-3xl font-bold mb-6">۶. واحدهای اجرایی</h2>
 
                     <p className="text-lg leading-relaxed text-justify mb-6">
-                        Core i9 دارای تعداد زیادی واحد اجرایی تخصصی است که به صورت موازی کار می‌کنند.
+                        <GlossaryText>Core i9 دارای تعداد زیادی واحد اجرایی تخصصی است که به صورت موازی کار می‌کنند.</GlossaryText>
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -777,26 +746,26 @@ export default function CoreI9ArchitecturePage() {
                                     <li>
                                         <strong>ALU (Arithmetic Logic Unit):</strong>
                                         <ul className="list-disc list-inside mr-4 mt-1">
-                                            <li>4-6 واحد ALU کامل</li>
-                                            <li>پشتیبانی از عملیات 8 تا 64 بیتی</li>
-                                            <li>Latency: 1 cycle برای اکثر عملیات</li>
-                                            <li>Throughput: 4-6 ops/cycle</li>
+                                            <li><GlossaryText>4-6 واحد ALU کامل</GlossaryText></li>
+                                            <li><GlossaryText>پشتیبانی از عملیات 8 تا 64 بیتی</GlossaryText></li>
+                                            <li><GlossaryText>Latency: 1 cycle برای اکثر عملیات</GlossaryText></li>
+                                            <li><GlossaryText>Throughput: 4-6 ops/cycle</GlossaryText></li>
                                         </ul>
                                     </li>
                                     <li className="mt-3">
                                         <strong>Address Generation Unit (AGU):</strong>
                                         <ul className="list-disc list-inside mr-4 mt-1">
-                                            <li>2-3 واحد AGU برای Load</li>
-                                            <li>1-2 واحد AGU برای Store</li>
-                                            <li>محاسبه آدرس‌های پیچیده (base + index*scale + displacement)</li>
+                                            <li><GlossaryText>2-3 واحد AGU برای Load</GlossaryText></li>
+                                            <li><GlossaryText>1-2 واحد AGU برای Store</GlossaryText></li>
+                                            <li><GlossaryText>محاسبه آدرس‌های پیچیده (base + index*scale + displacement)</GlossaryText></li>
                                         </ul>
                                     </li>
                                     <li className="mt-3">
                                         <strong>Branch Unit:</strong>
                                         <ul className="list-disc list-inside mr-4 mt-1">
-                                            <li>ارزیابی شرایط شاخه</li>
-                                            <li>محاسبه آدرس مقصد</li>
-                                            <li>بررسی صحت پیش‌بینی</li>
+                                            <li><GlossaryText>ارزیابی شرایط شاخه</GlossaryText></li>
+                                            <li><GlossaryText>محاسبه آدرس مقصد</GlossaryText></li>
+                                            <li><GlossaryText>بررسی صحت پیش‌بینی</GlossaryText></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -812,27 +781,27 @@ export default function CoreI9ArchitecturePage() {
                                     <li>
                                         <strong>FPU (Floating Point Unit):</strong>
                                         <ul className="list-disc list-inside mr-4 mt-1">
-                                            <li>2-3 واحد FP برای ADD/SUB</li>
-                                            <li>2-3 واحد FP برای MUL</li>
-                                            <li>1-2 واحد FP برای DIV/SQRT</li>
-                                            <li>پشتیبانی از FP32, FP64, FP80</li>
+                                            <li><GlossaryText>2-3 واحد FP برای ADD/SUB</GlossaryText></li>
+                                            <li><GlossaryText>2-3 واحد FP برای MUL</GlossaryText></li>
+                                            <li><GlossaryText>1-2 واحد FP برای DIV/SQRT</GlossaryText></li>
+                                            <li><GlossaryText>پشتیبانی از FP32, FP64, FP80</GlossaryText></li>
                                         </ul>
                                     </li>
                                     <li className="mt-3">
                                         <strong>SIMD Units (AVX-512):</strong>
                                         <ul className="list-disc list-inside mr-4 mt-1">
-                                            <li>2 واحد 512-bit FMA (Fused Multiply-Add)</li>
-                                            <li>عملیات روی 16× FP32 یا 8× FP64 به صورت موازی</li>
-                                            <li>Throughput: 2× 512-bit ops/cycle</li>
-                                            <li>32 رجیستر ZMM (512-bit)</li>
+                                            <li><GlossaryText>2 واحد 512-bit FMA (Fused Multiply-Add)</GlossaryText></li>
+                                            <li><GlossaryText>عملیات روی 16× FP32 یا 8× FP64 به صورت موازی</GlossaryText></li>
+                                            <li><GlossaryText>Throughput: 2× 512-bit ops/cycle</GlossaryText></li>
+                                            <li><GlossaryText>32 رجیستر ZMM (512-bit)</GlossaryText></li>
                                         </ul>
                                     </li>
                                     <li className="mt-3">
                                         <strong>Special Instructions:</strong>
                                         <ul className="list-disc list-inside mr-4 mt-1">
-                                            <li>AES-NI: رمزنگاری سخت‌افزاری</li>
-                                            <li>SHA Extensions: Hash محاسبات</li>
-                                            <li>AVX-VNNI: Deep Learning</li>
+                                            <li><GlossaryText>AES-NI: رمزنگاری سخت‌افزاری</GlossaryText></li>
+                                            <li><GlossaryText>SHA Extensions: Hash محاسبات</GlossaryText></li>
+                                            <li><GlossaryText>AVX-VNNI: Deep Learning</GlossaryText></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -843,39 +812,39 @@ export default function CoreI9ArchitecturePage() {
                     <h3 className="text-2xl font-bold mb-4 mt-10">۶.۱. Execution Ports</h3>
                     <Card className="bg-muted/30">
                         <CardContent className="pt-6">
-                            <p className="mb-4">توزیع واحدهای اجرایی بر روی Port ها (مثال: Ice Lake/Tiger Lake):</p>
+                            <p className="mb-4"><GlossaryText>توزیع واحدهای اجرایی بر روی Port ها (مثال: Ice Lake/Tiger Lake):</GlossaryText></p>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                                 <div className="border rounded p-3">
                                     <div className="font-bold mb-2">Port 0</div>
-                                    <div>ALU, FP MUL, FMA, Branch</div>
+                                    <div><GlossaryText>ALU, FP MUL, FMA, Branch</GlossaryText></div>
                                 </div>
                                 <div className="border rounded p-3">
                                     <div className="font-bold mb-2">Port 1</div>
-                                    <div>ALU, FP ADD, FMA, Shuffle</div>
+                                    <div><GlossaryText>ALU, FP ADD, FMA, Shuffle</GlossaryText></div>
                                 </div>
                                 <div className="border rounded p-3">
                                     <div className="font-bold mb-2">Port 2</div>
-                                    <div>Load AGU</div>
+                                    <div><GlossaryText>Load AGU</GlossaryText></div>
                                 </div>
                                 <div className="border rounded p-3">
                                     <div className="font-bold mb-2">Port 3</div>
-                                    <div>Load AGU</div>
+                                    <div><GlossaryText>Load AGU</GlossaryText></div>
                                 </div>
                                 <div className="border rounded p-3">
                                     <div className="font-bold mb-2">Port 4</div>
-                                    <div>Store Data</div>
+                                    <div><GlossaryText>Store Data</GlossaryText></div>
                                 </div>
                                 <div className="border rounded p-3">
                                     <div className="font-bold mb-2">Port 5</div>
-                                    <div>ALU, FP ADD, Shuffle</div>
+                                    <div><GlossaryText>ALU, FP ADD, Shuffle</GlossaryText></div>
                                 </div>
                                 <div className="border rounded p-3">
                                     <div className="font-bold mb-2">Port 6</div>
-                                    <div>ALU, Branch</div>
+                                    <div><GlossaryText>ALU, Branch</GlossaryText></div>
                                 </div>
                                 <div className="border rounded p-3">
                                     <div className="font-bold mb-2">Port 7-9</div>
-                                    <div>Store AGU</div>
+                                    <div><GlossaryText>Store AGU</GlossaryText></div>
                                 </div>
                             </div>
                         </CardContent>
@@ -1049,17 +1018,324 @@ export default function CoreI9ArchitecturePage() {
                     <Card className="bg-muted/30">
                         <CardContent className="pt-6">
                             <p className="text-lg leading-relaxed text-justify mb-4">
-                                معماری Intel Core i9 نمونه‌ای از پیچیدگی و توان محاسباتی پردازنده‌های مدرن است. ترکیب تکنیک‌های پیشرفته
-                                شامل Out-of-Order Execution عمیق، پیش‌بینی شاخه دقیق، سلسله مراتب حافظه نهان بهینه، و واحدهای اجرایی گسترده
-                                امکان دستیابی به عملکرد بالا در طیف وسیعی از کاربردها را فراهم می‌کند.
+                                <GlossaryText>
+                                    معماری Intel Core i9 نمونه‌ای از پیچیدگی و توان محاسباتی پردازنده‌های مدرن است. ترکیب تکنیک‌های پیشرفته
+                                    شامل Out-of-Order Execution عمیق، پیش‌بینی شاخه دقیق، سلسله مراتب حافظه نهان بهینه، و واحدهای اجرایی گسترده
+                                    امکان دستیابی به عملکرد بالا در طیف وسیعی از کاربردها را فراهم می‌کند.
+                                </GlossaryText>
                             </p>
                             <p className="text-lg leading-relaxed text-justify mb-4">
-                                درک این معماری برای بهینه‌سازی نرم‌افزار، تحلیل عملکرد، و طراحی الگوریتم‌های کارآمد ضروری است.
-                                نسل‌های جدیدتر با معرفی هسته‌های Hybrid (P-core و E-core) و بهبودهای مداوم در فرآیند ساخت و معماری،
-                                مرزهای عملکرد را به جلو می‌برند.
+                                <GlossaryText>
+                                    درک این معماری برای بهینه‌سازی نرم‌افزار، تحلیل عملکرد، و طراحی الگوریتم‌های کارآمد ضروری است.
+                                    نسل‌های جدیدتر با معرفی هسته‌های Hybrid (P-core و E-core) و بهبودهای مداوم در فرآیند ساخت و معماری،
+                                    مرزهای عملکرد را به جلو می‌برند.
+                                </GlossaryText>
                             </p>
                         </CardContent>
                     </Card>
+                </section>
+
+                {/* Glossary */}
+                <section className="mb-12">
+                    <h2 className="text-3xl font-bold mb-6">واژه‌نامه اصطلاحات فنی</h2>
+                    <p className="text-lg mb-6 text-muted-foreground">
+                        در این بخش، تمام اصطلاحات فنی و تخصصی که در متن مقاله آمده‌اند، به زبان ساده توضیح داده شده‌اند.
+                    </p>
+
+                    <div className="grid gap-4">
+                        <Card>
+                            <CardHeader className="bg-primary/5">
+                                <CardTitle className="text-lg">اصطلاحات معماری</CardTitle>
+                            </CardHeader>
+                            <CardContent className="pt-6">
+                                <div className="space-y-4">
+                                    <div>
+                                        <h4 className="font-bold mb-1">Skylake, Coffee Lake, Comet Lake, Rocket Lake, Alder Lake, Raptor Lake</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> نام‌های نسل‌های مختلف معماری پردازنده‌های Intel. هر نام نشان‌دهنده یک نسل خاص با بهبودها و ویژگی‌های جدید است.
+                                            <br /><strong>مثال:</strong> Skylake نسل اول (2015)، Raptor Lake جدیدترین نسل (2022-2023) است.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Out-of-Order Execution (OoO)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تکنیکی که پردازنده دستورات را به ترتیبی غیر از ترتیب برنامه اجرا می‌کند تا از منابع به طور بهینه استفاده شود.
+                                            <br /><strong>مثال:</strong> اگر دستور 1 منتظر داده از حافظه باشد، پردازنده دستور 2 و 3 را زودتر اجرا می‌کند.
+                                            <br /><strong>فایده:</strong> افزایش سرعت اجرا با پر کردن زمان‌های بیکاری پردازنده.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Hyper-Threading (HT)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تکنولوژی Intel که یک هسته فیزیکی را به دو هسته منطقی (Thread) تبدیل می‌کند.
+                                            <br /><strong>مثال:</strong> پردازنده 8 هسته‌ای با HT می‌تواند 16 Thread همزمان اجرا کند.
+                                            <br /><strong>فایده:</strong> افزایش کارایی با اجرای همزمان بیشتر برنامه‌ها.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Pipeline</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تقسیم فرآیند اجرای دستور به مراحل کوچکتر (مثل خط تولید کارخانه) برای افزایش سرعت.
+                                            <br /><strong>مراحل:</strong> Fetch (واکشی دستور) → Decode (رمزگشایی) → Execute (اجرا) → Write-back (نوشتن نتیجه)
+                                            <br /><strong>فایده:</strong> امکان اجرای همزمان چندین دستور در مراحل مختلف.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Hybrid Architecture</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> ترکیب دو نوع هسته: Performance Cores (P-cores) برای کارهای سنگین و Efficiency Cores (E-cores) برای کارهای سبک.
+                                            <br /><strong>مثال:</strong> Core i9-13900K دارای 8 هسته P-core و 16 هسته E-core است.
+                                            <br /><strong>فایده:</strong> تعادل بین عملکرد بالا و مصرف انرژی پایین.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">P-cores (Performance Cores)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> هسته‌های قدرتمند با فرکانس بالا برای کارهای سنگین محاسباتی.
+                                            <br /><strong>ویژگی:</strong> دارای Hyper-Threading، سرعت بالا، مصرف برق بیشتر.
+                                            <br /><strong>کاربرد:</strong> بازی‌ها، نرم‌افزارهای حرفه‌ای، کامپایل.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">E-cores (Efficiency Cores)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> هسته‌های کم‌مصرف برای کارهای پس‌زمینه و چندوظیفه‌ای.
+                                            <br /><strong>ویژگی:</strong> بدون Hyper-Threading، مصرف برق کمتر، فرکانس پایین‌تر.
+                                            <br /><strong>کاربرد:</strong> وظایف پس‌زمینه، مرورگر، برنامه‌های ساده.
+                                        </p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <Card>
+                            <CardHeader className="bg-primary/5">
+                                <CardTitle className="text-lg">اصطلاحات حافظه و Cache</CardTitle>
+                            </CardHeader>
+                            <CardContent className="pt-6">
+                                <div className="space-y-4">
+                                    <div>
+                                        <h4 className="font-bold mb-1">Cache (حافظه نهان)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> حافظه‌ای بسیار سریع و کوچک بین CPU و RAM برای ذخیره داده‌های پرکاربرد.
+                                            <br /><strong>سطوح:</strong> L1 (سریع‌ترین، کوچک‌ترین) → L2 → L3 (کندتر، بزرگ‌تر)
+                                            <br /><strong>فایده:</strong> کاهش زمان انتظار CPU برای دریافت داده از RAM.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">L1, L2, L3 Cache</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>L1:</strong> سریع‌ترین (4-5 سیکل)، کوچک‌ترین (32-96 KB)، اختصاصی هر هسته.
+                                            <br /><strong>L2:</strong> سرعت متوسط (12-15 سیکل)، اندازه متوسط (256KB-2MB)، اختصاصی هر هسته یا مشترک بین چند هسته.
+                                            <br /><strong>L3:</strong> کندتر (40-50 سیکل)، بزرگ‌تر (8-36 MB)، مشترک بین همه هسته‌ها.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">TLB (Translation Lookaside Buffer)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> حافظه نهان ویژه برای ذخیره ترجمه آدرس‌های مجازی به فیزیکی.
+                                            <br /><strong>فایده:</strong> سرعت بخشیدن به فرآیند ترجمه آدرس حافظه.
+                                            <br /><strong>نمونه:</strong> L1 DTLB: 64 ورودی، L2 STLB: 1536 ورودی.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Prefetcher</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> مکانیزمی که داده‌های احتمالی مورد نیاز آینده را پیش از درخواست به Cache می‌آورد.
+                                            <br /><strong>سطوح:</strong> L1, L2, L3 (LLC), MLC Streamer
+                                            <br /><strong>فایده:</strong> کاهش Cache Miss و افزایش سرعت دسترسی به داده.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">MESIF Protocol</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> پروتکل هماهنگی Cache در سیستم‌های چندهسته‌ای (نسخه بهبود یافته MESI).
+                                            <br /><strong>حالت‌ها:</strong> Modified (تغییر یافته), Exclusive (انحصاری), Shared (مشترک), Invalid (نامعتبر), Forward (ارسال‌کننده)
+                                            <br /><strong>فایده:</strong> اطمینان از یکسان بودن داده‌ها در Cache های مختلف.
+                                        </p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <Card>
+                            <CardHeader className="bg-primary/5">
+                                <CardTitle className="text-lg">اصطلاحات فرآیند و مشخصات</CardTitle>
+                            </CardHeader>
+                            <CardContent className="pt-6">
+                                <div className="space-y-4">
+                                    <div>
+                                        <h4 className="font-bold mb-1">14nm, 10nm, 7nm (فرآیند ساخت)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> اندازه ترانزیستورها در پردازنده (نانومتر = یک میلیاردم متر).
+                                            <br /><strong>قانون:</strong> عدد کوچک‌تر = ترانزیستورهای کوچک‌تر = مصرف برق کمتر + سرعت بیشتر + حرارت کمتر
+                                            <br /><strong>مثال:</strong> Intel 7 (10nm SuperFin) فرآیند پیشرفته‌تر از 14nm است.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">TDP (Thermal Design Power)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> حداکثر مقدار حرارتی که پردازنده تولید می‌کند و سیستم خنک‌کننده باید دفع کند (بر حسب وات).
+                                            <br /><strong>مثال:</strong> Core i9-13900K: TDP پایه 125W، حداکثر در Turbo: 253W
+                                            <br /><strong>کاربرد:</strong> انتخاب خنک‌کننده و منبع تغذیه مناسب.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Turbo Boost</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تکنولوژی افزایش خودکار فرکانس پردازنده فراتر از سرعت پایه در صورت نیاز و وجود ظرفیت حرارتی.
+                                            <br /><strong>مثال:</strong> Core i9 از 3.0 GHz پایه به 5.8 GHz Turbo می‌رسد.
+                                            <br /><strong>شرایط:</strong> دمای پایین، مصرف برق کافی، بار کاری مناسب.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">IPC (Instructions Per Cycle)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تعداد دستورات اجرا شده در هر سیکل ساعت پردازنده.
+                                            <br /><strong>اهمیت:</strong> معیار کارایی معماری - IPC بالاتر = پردازنده کارآمدتر
+                                            <br /><strong>مثال:</strong> Core i9 مدرن: 3.5-4.5 IPC در بارکاری بهینه.
+                                        </p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <Card>
+                            <CardHeader className="bg-primary/5">
+                                <CardTitle className="text-lg">اصطلاحات حافظه اصلی و I/O</CardTitle>
+                            </CardHeader>
+                            <CardContent className="pt-6">
+                                <div className="space-y-4">
+                                    <div>
+                                        <h4 className="font-bold mb-1">DDR4, DDR5 (DRAM)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> نوع حافظه اصلی سیستم (RAM).
+                                            <br /><strong>DDR4:</strong> نسل قدیمی‌تر، سرعت تا 3200 MHz، ولتاژ 1.2V
+                                            <br /><strong>DDR5:</strong> جدیدترین نسل، سرعت 4800-5600 MHz+، ولتاژ 1.1V، پهنای باند بیشتر
+                                            <br /><strong>پشتیبانی:</strong> Core i9-12th Gen و بالاتر از هر دو نوع پشتیبانی می‌کنند.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">PCIe (PCI Express)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> باس پرسرعت برای اتصال کارت گرافیک، SSD و دستگاه‌های پرسرعت دیگر.
+                                            <br /><strong>نسل‌ها:</strong> PCIe 3.0 → 4.0 → 5.0 (هر نسل دو برابر سرعت نسل قبل)
+                                            <br /><strong>مثال:</strong> PCIe 5.0 x16: حداکثر 64 GB/s پهنای باند
+                                            <br /><strong>کاربرد:</strong> GPU ها، SSD های NVMe پرسرعت.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Lanes (خطوط PCIe)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> مسیرهای موازی انتقال داده در PCIe.
+                                            <br /><strong>مثال:</strong> x16 = 16 خط موازی، x4 = 4 خط موازی
+                                            <br /><strong>نکته:</strong> خطوط بیشتر = پهنای باند بیشتر برای انتقال داده.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">DMI (Direct Media Interface)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> باس ارتباطی اختصاصی بین CPU و چیپست مادربرد.
+                                            <br /><strong>نسل‌ها:</strong> DMI 3.0 → DMI 4.0 (معادل PCIe 4.0 x8)
+                                            <br /><strong>کاربرد:</strong> اتصال CPU به درگاه‌های SATA، USB، شبکه و سایر I/O های مادربرد.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">UHD Graphics 770 / 730</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> گرافیک مجتمع (iGPU) داخل پردازنده Intel.
+                                            <br /><strong>کاربرد:</strong> نمایش تصویر بدون کارت گرافیک مجزا، رمزگشایی ویدئو، کارهای سبک گرافیکی
+                                            <br /><strong>نکته:</strong> برای بازی سنگین کافی نیست، کارت گرافیک مجزا لازم است.
+                                        </p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <Card>
+                            <CardHeader className="bg-primary/5">
+                                <CardTitle className="text-lg">اصطلاحات پیشرفته</CardTitle>
+                            </CardHeader>
+                            <CardContent className="pt-6">
+                                <div className="space-y-4">
+                                    <div>
+                                        <h4 className="font-bold mb-1">Branch Prediction (پیش‌بینی شاخه)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تکنیک پیش‌بینی مسیر دستورات شرطی (if/else) قبل از اجرا برای جلوگیری از توقف Pipeline.
+                                            <br /><strong>اجزا:</strong> BTB (Branch Target Buffer), PHT (Pattern History Table)
+                                            <br /><strong>دقت:</strong> 95-99% در Core i9 مدرن
+                                            <br /><strong>فایده:</strong> جلوگیری از اتلاف زمان در تصمیم‌گیری‌های شرطی.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">AVX-512 (Advanced Vector Extensions)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> دستورات SIMD پیشرفته برای محاسبات موازی با داده‌های 512 بیتی.
+                                            <br /><strong>کاربرد:</strong> پردازش تصویر، شبیه‌سازی علمی، یادگیری ماشین، رمزنگاری
+                                            <br /><strong>قدرت:</strong> اجرای 16 عملیات اعشاری 32-بیتی همزمان در یک دستور
+                                            <br /><strong>نکته:</strong> در E-cores پشتیبانی نمی‌شود، فقط P-cores.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Execution Units / Ports</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> واحدهای محاسباتی تخصصی داخل هر هسته که دستورات را اجرا می‌کنند.
+                                            <br /><strong>انواع:</strong> ALU (محاسبات صحیح), FPU (اعشاری), Load/Store (خواندن/نوشتن حافظه), Branch (شاخه)
+                                            <br /><strong>Ports:</strong> مسیرهایی که دستورات از طریق آن به واحدهای اجرایی می‌روند (Port 0-11)
+                                            <br /><strong>فایده:</strong> اجرای موازی چندین دستور در هر سیکل.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Store-to-Load Forwarding</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تکنیک ارسال مستقیم داده از دستور Store (نوشتن) به دستور Load (خواندن) بدون نوشتن در Cache.
+                                            <br /><strong>فایده:</strong> کاهش تأخیر زمانی که دستور خواندن، داده نوشته شده توسط دستور قبلی را نیاز دارد.
+                                            <br /><strong>نمونه:</strong> `x = 5; y = x + 1;` - مقدار x مستقیماً به دستور دوم فرستاده می‌شود.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">Memory Disambiguation</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تشخیص این‌که آیا دو دسترسی حافظه به آدرس‌های یکسان اشاره می‌کنند یا خیر.
+                                            <br /><strong>فایده:</strong> امکان اجرای out-of-order دستورات حافظه بدون تداخل
+                                            <br /><strong>مثال:</strong> Load می‌تواند قبل از Store قبلی اجرا شود اگر به آدرس متفاوت باشند.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold mb-1">FLOPS (Floating Point Operations Per Second)</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            <strong>تعریف:</strong> تعداد عملیات اعشاری در هر ثانیه - معیار قدرت محاسباتی.
+                                            <br /><strong>واحدها:</strong> GFLOPS (میلیارد), TFLOPS (تریلیون)
+                                            <br /><strong>مثال:</strong> Core i9-13900K با AVX-512: بیش از 2 TFLOPS
+                                            <br /><strong>کاربرد:</strong> محاسبات علمی، شبیه‌سازی، یادگیری عمیق.
+                                        </p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </section>
 
                 {/* References */}
