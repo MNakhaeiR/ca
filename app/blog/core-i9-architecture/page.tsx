@@ -509,10 +509,10 @@ export default function CoreI9ArchitecturePage() {
                                     <h4 className="font-bold mb-3"><GlossaryText>وابستگی داده‌ها (Data Dependencies)</GlossaryText></h4>
                                     <p className="mb-4"><GlossaryText>تکنیک‌های مقابله:</GlossaryText></p>
                                     <ul className="list-disc list-inside space-y-2 mr-4">
-                                        <li><GlossaryText><strong>Register Renaming:</strong> حذف WAR و WAW dependencies با استفاده از Physical Register File (180+ registers)</GlossaryText></li>
-                                        <li><GlossaryText><strong>Forwarding:</strong> انتقال مستقیم نتایج بین واحدهای اجرایی</GlossaryText></li>
-                                        <li><GlossaryText><strong>Out-of-Order Execution:</strong> اجرای دستورالعمل‌های مستقل در حین انتظار</GlossaryText></li>
-                                        <li><GlossaryText><strong>Memory Disambiguation:</strong> پیش‌بینی وابستگی‌های حافظه</GlossaryText></li>
+                                        <li><GlossaryText>Register Renaming: حذف WAR و WAW dependencies با استفاده از Physical Register File (180+ registers)</GlossaryText></li>
+                                        <li><GlossaryText>Forwarding: انتقال مستقیم نتایج بین واحدهای اجرایی</GlossaryText></li>
+                                        <li><GlossaryText>Out-of-Order Execution: اجرای دستورالعمل‌های مستقل در حین انتظار</GlossaryText></li>
+                                        <li><GlossaryText>Memory Disambiguation: پیش‌بینی وابستگی‌های حافظه</GlossaryText></li>
                                     </ul>
                                 </CardContent>
                             </Card>
@@ -537,10 +537,10 @@ export default function CoreI9ArchitecturePage() {
                                     <h4 className="font-bold mb-3"><GlossaryText>محدودیت منابع (Resource Conflicts)</GlossaryText></h4>
                                     <p className="mb-4"><GlossaryText>راه‌حل‌های معماری:</GlossaryText></p>
                                     <ul className="list-disc list-inside space-y-2 mr-4">
-                                        <li><GlossaryText><strong>Port Redundancy:</strong> چندین Port اجرایی (8-12 ports)</GlossaryText></li>
-                                        <li><GlossaryText><strong>Multiple ALUs:</strong> واحدهای محاسباتی متعدد (4-6 ALUs)</GlossaryText></li>
-                                        <li><GlossaryText><strong>Reservation Stations:</strong> صف‌های انتظار بزرگ (97+ entries)</GlossaryText></li>
-                                        <li><GlossaryText><strong>ROB Size:</strong> Reorder Buffer بزرگ (224-512 entries)</GlossaryText></li>
+                                        <li><GlossaryText>Port Redundancy: چندین Port اجرایی (8-12 ports)</GlossaryText></li>
+                                        <li><GlossaryText>Multiple ALUs: واحدهای محاسباتی متعدد (4-6 ALUs)</GlossaryText></li>
+                                        <li><GlossaryText>Reservation Stations: صف‌های انتظار بزرگ (97+ entries)</GlossaryText></li>
+                                        <li><GlossaryText>ROB Size: Reorder Buffer بزرگ (224-512 entries)</GlossaryText></li>
                                     </ul>
                                 </CardContent>
                             </Card>
@@ -713,11 +713,11 @@ export default function CoreI9ArchitecturePage() {
                                 <GlossaryText>پروتکل MESIF (بهبودیافته از MESI) برای حفظ سازگاری حافظه نهان در سیستم‌های چند هسته‌ای:</GlossaryText>
                             </p>
                             <ul className="list-disc list-inside space-y-2 mr-6">
-                                <li><GlossaryText><strong>M (Modified):</strong> داده تغییر کرده و فقط در این Cache موجود است</GlossaryText></li>
-                                <li><GlossaryText><strong>E (Exclusive):</strong> داده تمیز و فقط در این Cache موجود است</GlossaryText></li>
-                                <li><GlossaryText><strong>S (Shared):</strong> داده در چندین Cache موجود است</GlossaryText></li>
-                                <li><GlossaryText><strong>I (Invalid):</strong> داده معتبر نیست</GlossaryText></li>
-                                <li><GlossaryText><strong>F (Forward):</strong> داده Shared است اما این Cache مسئول پاسخ‌دهی است (کاهش ترافیک)</GlossaryText></li>
+                                <li><GlossaryText>M (Modified): داده تغییر کرده و فقط در این Cache موجود است</GlossaryText></li>
+                                <li><GlossaryText>E (Exclusive): داده تمیز و فقط در این Cache موجود است</GlossaryText></li>
+                                <li><GlossaryText>S (Shared): داده در چندین Cache موجود است</GlossaryText></li>
+                                <li><GlossaryText>I (Invalid): داده معتبر نیست</GlossaryText></li>
+                                <li><GlossaryText>F (Forward): داده Shared است اما این Cache مسئول پاسخ‌دهی است (کاهش ترافیک)</GlossaryText></li>
                             </ul>
                         </CardContent>
                     </Card>
