@@ -193,7 +193,7 @@ export function AppToolbar() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[340px] sm:w-[400px]">
+              <SheetContent side="right" className="w-85 sm:w-100">
                 <SheetHeader>
                   <SheetTitle className="flex items-center gap-2">
                     <CircuitBoard className="h-5 w-5 text-primary" />
@@ -343,7 +343,7 @@ export function AppToolbar() {
 
       {/* Dialogs */}
       <Dialog open={aboutOpen} onOpenChange={setAboutOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-125">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <CircuitBoard className="h-5 w-5 text-primary" />

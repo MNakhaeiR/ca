@@ -485,15 +485,15 @@ export default function CoreI9ArchitecturePage() {
                             <CardContent>
                                 <ul className="space-y-3 text-sm">
                                     <li className="flex items-start gap-2">
-                                        <span className="font-bold min-w-[120px]">Fetch:</span>
+                                        <span className="font-bold min-w-30">Fetch:</span>
                                         <span>واکشی دستورالعمل‌ها از L1-I Cache با پهنای باند بالا (16-32 byte/cycle)</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="font-bold min-w-[120px]">Decode:</span>
+                                        <span className="font-bold min-w-30">Decode:</span>
                                         <span>رمزگشایی دستورالعمل‌های x86 پیچیده به Micro-Ops (μOps)</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="font-bold min-w-[120px]">μOp Cache:</span>
+                                        <span className="font-bold min-w-30">μOp Cache:</span>
                                         <span>ذخیره μOps رمزگشایی شده برای کاهش تأخیر Decode</span>
                                     </li>
                                 </ul>
@@ -507,19 +507,19 @@ export default function CoreI9ArchitecturePage() {
                             <CardContent>
                                 <ul className="space-y-3 text-sm">
                                     <li className="flex items-start gap-2">
-                                        <span className="font-bold min-w-[120px]">Allocate:</span>
+                                        <span className="font-bold min-w-30">Allocate:</span>
                                         <span>تخصیص منابع (ROB، RS) به μOps</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="font-bold min-w-[120px]">Schedule:</span>
+                                        <span className="font-bold min-w-30">Schedule:</span>
                                         <span>زمان‌بندی خارج از ترتیب برای اجرا</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="font-bold min-w-[120px]">Execute:</span>
+                                        <span className="font-bold min-w-30">Execute:</span>
                                         <span>اجرای μOps در واحدهای اجرایی متعدد</span>
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="font-bold min-w-[120px]">Retire:</span>
+                                        <span className="font-bold min-w-30">Retire:</span>
                                         <span>Commit نتایج به ترتیب برنامه</span>
                                     </li>
                                 </ul>

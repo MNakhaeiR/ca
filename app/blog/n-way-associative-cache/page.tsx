@@ -298,19 +298,19 @@ export default function NWayAssociativeCachePage() {
                             <h4 className="font-bold text-lg mb-4">پارامترهای اصلی:</h4>
                             <ul className="space-y-3 text-lg">
                                 <li className="flex items-start gap-3">
-                                    <span className="font-bold min-w-[150px]">Number of Sets (S):</span>
+                                    <span className="font-bold min-w-37.5">Number of Sets (S):</span>
                                     <span>تعداد Set های موجود در Cache</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="font-bold min-w-[150px]">Associativity (N):</span>
+                                    <span className="font-bold min-w-37.5">Associativity (N):</span>
                                     <span>تعداد Way ها در هر Set</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="font-bold min-w-[150px]">Block Size (B):</span>
+                                    <span className="font-bold min-w-37.5">Block Size (B):</span>
                                     <span>اندازه هر بلوک Cache به بایت</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="font-bold min-w-[150px]">Cache Size:</span>
+                                    <span className="font-bold min-w-37.5">Cache Size:</span>
                                     <span className="font-mono">S × N × B بایت</span>
                                 </li>
                             </ul>
