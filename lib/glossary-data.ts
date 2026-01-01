@@ -798,20 +798,7 @@ export const glossaryData: Record<string, GlossaryEntry> = {
     },
 
     // Architecture Names
-    skylake: {
-        term: "Skylake",
-        brief: "معماری Intel نسل ششم (2015)",
-        definition: "معماری پردازنده Intel Core نسل ششم با بهبودهای عملکردی و کارایی انرژی.",
-        example: "Core i9-7900X از معماری Skylake-X استفاده می‌کند",
-        benefit: "افزایش IPC و کاهش مصرف برق نسبت به نسل قبل"
-    },
-    "coffee-lake": {
-        term: "Coffee Lake",
-        brief: "معماری Intel نسل هشتم و نهم (2017-2019)",
-        definition: "معماری بهینه‌شده Skylake با افزایش تعداد هسته‌ها و بهبود فرکانس.",
-        example: "Core i9-9900K اولین Core i9 Desktop با 8 هسته",
-        benefit: "افزایش عملکرد چندهسته‌ای با فرآیند 14nm++"
-    },
+    
     "comet-lake": {
         term: "Comet Lake",
         brief: "معماری Intel نسل دهم (2020)",
@@ -826,13 +813,7 @@ export const glossaryData: Record<string, GlossaryEntry> = {
         benefit: "افزایش 19% در IPC نسبت به Comet Lake",
         technical: "همچنان 14nm ولی با معماری هسته جدید"
     },
-    "raptor-lake": {
-        term: "Raptor Lake",
-        brief: "معماری Intel نسل سیزدهم (2022)",
-        definition: "بهبود Alder Lake با E-cores بیشتر و cache بزرگتر.",
-        example: "Core i9-13900K با 8 P-cores و 16 E-cores",
-        benefit: "افزایش عملکرد چندنخی با E-cores اضافی"
-    },
+    
 
     // Platform Terms
     desktop: {
@@ -867,27 +848,7 @@ export const glossaryData: Record<string, GlossaryEntry> = {
     },
 
     // Performance Metrics
-    "turbo-boost": {
-        term: "Turbo Boost",
-        brief: "افزایش خودکار فرکانس",
-        definition: "تکنولوژی Intel برای افزایش خودکار فرکانس پردازنده فراتر از Base Clock.",
-        example: "Core i9-13900K: 3.0GHz Base, 5.8GHz Turbo",
-        benefit: "افزایش عملکرد در کارهای تک‌نخی"
-    },
-    "ddr4": {
-        term: "DDR4",
-        brief: "نسل چهارم حافظه DDR",
-        definition: "نسل چهارم حافظه Double Data Rate با سرعت 1600-3200 MHz.",
-        technical: "ولتاژ 1.2V، پهنای باند تا 25.6 GB/s",
-        benefit: "مصرف کمتر و سرعت بیشتر از DDR3"
-    },
-    "ddr5": {
-        term: "DDR5",
-        brief: "نسل پنجم حافظه DDR",
-        definition: "جدیدترین نسل حافظه با سرعت 4800+ MHz و کانال‌های دوگانه در هر ماژول.",
-        example: "Alder Lake و Raptor Lake از DDR5 پشتیبانی می‌کنند",
-        benefit: "پهنای باند دوبرابر و کارایی انرژی بهتر"
-    },
+    
     "dual-channel": {
         term: "Dual Channel",
         brief: "دو کانال موازی حافظه",
@@ -904,39 +865,4 @@ export const glossaryData: Record<string, GlossaryEntry> = {
         example: "Alder Lake اولین پردازنده با پشتیبانی PCIe 5.0",
         benefit: "پهنای باند دوبرابر برای GPU و SSD"
     },
-    "working-set": {
-        term: "Working Set (مجموعه کاری)",
-        brief: "داده‌هایی که برنامه فعالاً استفاده می‌کند",
-        definition: "مجموعه صفحات یا بلوک‌های حافظه‌ای که برنامه در یک بازه زمانی به آن‌ها دسترسی دارد.",
-        example: "برنامه با Working Set 2MB در Cache 1MB دچار Capacity Miss می‌شود",
-        benefit: "اندازه Cache باید بزرگتر از Working Set باشد"
-    },
-    "cache-hit-rate": {
-        term: "Cache Hit Rate",
-        brief: "نسبت Hit به کل دسترسی‌ها",
-        definition: "درصد دسترسی‌هایی که در Cache موفق بوده‌اند (Hit / Total).",
-        example: "Hit Rate 95% یعنی 95 از 100 دسترسی از Cache بوده",
-        benefit: "هرچه بیشتر، عملکرد بهتر"
-    },
-    "cache-miss-rate": {
-        term: "Cache Miss Rate",
-        brief: "نسبت Miss به کل دسترسی‌ها",
-        definition: "درصد دسترسی‌هایی که در Cache ناموفق بوده و از حافظه پایین‌تر خوانده شده‌اند.",
-        technical: "Miss Rate = 1 - Hit Rate",
-        benefit: "کاهش Miss Rate هدف اصلی طراحی Cache"
-    },
-    "register-renaming": {
-        term: "Register Renaming",
-        brief: "تخصیص پویای رجیسترهای فیزیکی",
-        definition: "تکنیک حذف وابستگی‌های کاذب (WAR, WAW) با نگاشت رجیسترهای معماری به فیزیکی.",
-        benefit: "افزایش توان Out-of-Order Execution",
-        technical: "معمولاً 180-350 رجیستر فیزیکی"
-    },
-    "speculative-execution": {
-        term: "Speculative Execution",
-        brief: "اجرای حدسی دستورات",
-        definition: "اجرای دستورات قبل از اطمینان از صحت مسیر، برای جلوگیری از توقف Pipeline.",
-        benefit: "افزایش بهره‌وری Pipeline",
-        technical: "در صورت حدس اشتباه، نتایج Flush می‌شوند"
-    }
 };
